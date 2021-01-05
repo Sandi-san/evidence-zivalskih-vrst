@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "evidence-zivalskih-vrst", "evidence-zivalskih-vrst\evidence-zivalskih-vrst.csproj", "{AB38AF54-B5EA-4900-B230-397F4888BE81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atributi", "Atributi\Atributi.csproj", "{59BA55D0-D4F9-45B5-9B61-9417F4D35745}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB38AF54-B5EA-4900-B230-397F4888BE81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB38AF54-B5EA-4900-B230-397F4888BE81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB38AF54-B5EA-4900-B230-397F4888BE81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB38AF54-B5EA-4900-B230-397F4888BE81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59BA55D0-D4F9-45B5-9B61-9417F4D35745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59BA55D0-D4F9-45B5-9B61-9417F4D35745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59BA55D0-D4F9-45B5-9B61-9417F4D35745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59BA55D0-D4F9-45B5-9B61-9417F4D35745}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {136FFDFC-0827-4EB9-9992-4578BCD2B9E7}
+	EndGlobalSection
+EndGlobal
