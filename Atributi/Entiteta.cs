@@ -6,15 +6,42 @@ using System.Threading.Tasks;
 
 namespace Atributi
 {
-    class Entiteta
+    public class Kraj
     {
         public string ImeKraja { get; set; }
         public string CifraKraja { get; set; }
         public string VelikiUporabnik { get; set; }
+        /*
+        private string _velikiuporabnik;
+        public string VelikiUporabnik 
+        { 
+            get
+            {
+                return _velikiuporabnik;
+            }
+            
+            set
+            {
+                
+                if (value == null)
+                {
+                    _velikiuporabnik = null;
+                }
+            }
+        
+        }
+        */
 
-        public Entiteta()
+        public Kraj()
         {
 
+        }
+
+        public Kraj(string ime, string posta, string velupor)
+        {
+            ImeKraja = ime;
+            CifraKraja = posta;
+            VelikiUporabnik = velupor;
         }
     }
 }
