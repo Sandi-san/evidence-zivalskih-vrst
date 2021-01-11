@@ -31,6 +31,8 @@ namespace evidence_zivalskih_vrst
 
                     NpgsqlDataReader listKraji = com.ExecuteReader();
 
+                    listBoxKraji.Items.Clear();
+
                     while(listKraji.Read())
                     {
                         string imeKraj = listKraji.GetString(1);
@@ -51,8 +53,6 @@ namespace evidence_zivalskih_vrst
 
         public void NovKraj(Kraj novKraj)
         {
-            //MessageBox.Show(itemToSave.Price.ToString());
-
             using (con) //connection uporabljen le v življenjski dobi item-a
             {
                 con.Open();
@@ -63,6 +63,40 @@ namespace evidence_zivalskih_vrst
 
                     com.Dispose();
                 
+
+                con.Close();
+            }
+        }
+
+        public void UpdateKraj(Kraj updateKraj, int IDlistBoxKraji)
+        {
+            using (con) //connection uporabljen le v življenjski dobi item-a
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("UPDATE kraji SET ime = '" +updateKraj.ImeKraja + "', posta = '" + updateKraj.CifraKraja + "', veliki_uporabniki = '" + updateKraj.VelikiUporabnik + "' WHERE id_k = '" + IDlistBoxKraji + "';", con);
+
+                com.ExecuteNonQuery();
+
+                com.Dispose();
+
+
+                con.Close();
+            }
+        }
+
+        public void DeleteKraj(int IDlistBoxKraji)
+        {
+            using (con) //connection uporabljen le v življenjski dobi item-a
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("DELETE FROM kraji WHERE id_k = '" + IDlistBoxKraji + "';", con);
+
+                com.ExecuteNonQuery();
+
+                com.Dispose();
+
 
                 con.Close();
             }

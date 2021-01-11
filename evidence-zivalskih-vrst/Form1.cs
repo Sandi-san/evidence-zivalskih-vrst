@@ -18,18 +18,23 @@ namespace evidence_zivalskih_vrst
             InitializeComponent();
         }
 
-        private void buttonKrajNov_Click(object sender, EventArgs e)
+        private void buttonKrajForm_Click(object sender, EventArgs e)
         {
-            Kraj novKrajPodatki = new Kraj(textBoxKrajIme.Text, textBoxKrajPosta.Text, textBoxKrajVelUporab.Text);
+            NovKraj odpriNovKraj = new NovKraj();
+            odpriNovKraj.Show();
 
-            Database NovKraj = new Database();
-            NovKraj.NovKraj(novKrajPodatki);
+            this.Hide();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Database Kraji = new Database();
             Kraji.ViewKraji(listBoxKraji);
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
