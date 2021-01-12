@@ -69,6 +69,7 @@
             // textBoxDodajIme
             // 
             this.textBoxDodajIme.Location = new System.Drawing.Point(25, 63);
+            this.textBoxDodajIme.MaxLength = 60;
             this.textBoxDodajIme.Name = "textBoxDodajIme";
             this.textBoxDodajIme.Size = new System.Drawing.Size(143, 20);
             this.textBoxDodajIme.TabIndex = 1;
@@ -76,6 +77,7 @@
             // textBoxDodajPosta
             // 
             this.textBoxDodajPosta.Location = new System.Drawing.Point(25, 132);
+            this.textBoxDodajPosta.MaxLength = 4;
             this.textBoxDodajPosta.Name = "textBoxDodajPosta";
             this.textBoxDodajPosta.Size = new System.Drawing.Size(143, 20);
             this.textBoxDodajPosta.TabIndex = 2;
@@ -83,6 +85,7 @@
             // textBoxDodajVelUporab
             // 
             this.textBoxDodajVelUporab.Location = new System.Drawing.Point(25, 207);
+            this.textBoxDodajVelUporab.MaxLength = 80;
             this.textBoxDodajVelUporab.Name = "textBoxDodajVelUporab";
             this.textBoxDodajVelUporab.Size = new System.Drawing.Size(143, 20);
             this.textBoxDodajVelUporab.TabIndex = 3;
@@ -159,6 +162,7 @@
             // textBoxUpdateVelUporab
             // 
             this.textBoxUpdateVelUporab.Location = new System.Drawing.Point(25, 207);
+            this.textBoxUpdateVelUporab.MaxLength = 80;
             this.textBoxUpdateVelUporab.Name = "textBoxUpdateVelUporab";
             this.textBoxUpdateVelUporab.Size = new System.Drawing.Size(143, 20);
             this.textBoxUpdateVelUporab.TabIndex = 3;
@@ -194,6 +198,7 @@
             // textBoxUpdateIme
             // 
             this.textBoxUpdateIme.Location = new System.Drawing.Point(25, 63);
+            this.textBoxUpdateIme.MaxLength = 60;
             this.textBoxUpdateIme.Name = "textBoxUpdateIme";
             this.textBoxUpdateIme.Size = new System.Drawing.Size(143, 20);
             this.textBoxUpdateIme.TabIndex = 1;
@@ -210,6 +215,7 @@
             // textBoxUpdatePosta
             // 
             this.textBoxUpdatePosta.Location = new System.Drawing.Point(25, 132);
+            this.textBoxUpdatePosta.MaxLength = 4;
             this.textBoxUpdatePosta.Name = "textBoxUpdatePosta";
             this.textBoxUpdatePosta.Size = new System.Drawing.Size(143, 20);
             this.textBoxUpdatePosta.TabIndex = 2;
@@ -219,14 +225,14 @@
             this.groupBoxDelete.Controls.Add(this.buttonDelete);
             this.groupBoxDelete.Location = new System.Drawing.Point(428, 81);
             this.groupBoxDelete.Name = "groupBoxDelete";
-            this.groupBoxDelete.Size = new System.Drawing.Size(190, 83);
+            this.groupBoxDelete.Size = new System.Drawing.Size(139, 83);
             this.groupBoxDelete.TabIndex = 9;
             this.groupBoxDelete.TabStop = false;
             this.groupBoxDelete.Text = "Izbriši kraj";
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(56, 37);
+            this.buttonDelete.Location = new System.Drawing.Point(28, 37);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 0;
@@ -237,16 +243,15 @@
             // listBoxKraji
             // 
             this.listBoxKraji.FormattingEnabled = true;
-            this.listBoxKraji.Location = new System.Drawing.Point(640, 81);
+            this.listBoxKraji.Location = new System.Drawing.Point(587, 87);
             this.listBoxKraji.Name = "listBoxKraji";
-            this.listBoxKraji.Size = new System.Drawing.Size(148, 277);
+            this.listBoxKraji.Size = new System.Drawing.Size(202, 277);
             this.listBoxKraji.TabIndex = 10;
-            this.listBoxKraji.SelectedIndexChanged += new System.EventHandler(this.listBoxKraji_SelectedIndexChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(675, 65);
+            this.label10.Location = new System.Drawing.Point(651, 61);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 13);
             this.label10.TabIndex = 11;
@@ -254,7 +259,7 @@
             // 
             // buttonDatabaseUpdate
             // 
-            this.buttonDatabaseUpdate.Location = new System.Drawing.Point(659, 375);
+            this.buttonDatabaseUpdate.Location = new System.Drawing.Point(637, 370);
             this.buttonDatabaseUpdate.Name = "buttonDatabaseUpdate";
             this.buttonDatabaseUpdate.Size = new System.Drawing.Size(112, 23);
             this.buttonDatabaseUpdate.TabIndex = 12;
@@ -266,12 +271,12 @@
             // 
             this.labelInfo.AutoSize = true;
             this.labelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelInfo.Location = new System.Drawing.Point(428, 303);
+            this.labelInfo.Location = new System.Drawing.Point(425, 211);
             this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(190, 72);
+            this.labelInfo.Size = new System.Drawing.Size(139, 108);
             this.labelInfo.TabIndex = 13;
-            this.labelInfo.Text = "Za posodabljanje in brisanje\r\nkrajev, izberi kraj v \r\nseznamu krajev \r\nkaterega ž" +
-    "eliš upravljati.\r\n";
+            this.labelInfo.Text = "Za posodabljanje in \r\nbrisanje krajev, \r\nizberi kraj v \r\nseznamu krajev \r\nkatereg" +
+    "a želiš \r\nupravljati.\r\n";
             this.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // NovKraj

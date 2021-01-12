@@ -39,7 +39,7 @@ namespace evidence_zivalskih_vrst
             Kraj novKrajPodatki = new Kraj(textBoxDodajIme.Text, textBoxDodajPosta.Text, textBoxDodajVelUporab.Text);
 
             Database NovKraj = new Database();
-            NovKraj.NovKraj(novKrajPodatki);
+            NovKraj.InsertKraj(novKrajPodatki);
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
@@ -57,11 +57,6 @@ namespace evidence_zivalskih_vrst
 
             Database Kraji = new Database();
             Kraji.DeleteKraj(IDlistbox);
-        }
-
-        private void listBoxKraji_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            label10.Text = Convert.ToString(listBoxKraji.SelectedIndex + 1);
         }
     }
 }

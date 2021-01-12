@@ -37,11 +37,13 @@ namespace evidence_zivalskih_vrst
 
                     while(listKraji.Read())
                     {
+                        //int idKraj = listKraji.GetInt32(0);
                         string imeKraj = listKraji.GetString(1);
                         string cifraPosta = listKraji.GetString(2);
                         //string velikiUporabnik = listKraji.GetString(3);
 
                         listBoxKraji.Items.Add(imeKraj + " (" + cifraPosta + ")");
+                        //evidence_zivalskih_vrst.novKraj
                     }
 
                     listKraji.Close();
@@ -54,7 +56,7 @@ namespace evidence_zivalskih_vrst
         }
 
         /*DODAJ KRAJ*/
-        public void NovKraj(Kraj novKraj)
+        public void InsertKraj(Kraj novKraj)
         {
             using (con) //connection uporabljen le v življenjski dobi item-a
             {
