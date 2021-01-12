@@ -14,19 +14,21 @@ namespace evidence_zivalskih_vrst
     {
         private NpgsqlConnection con;
         
+        /*POVEZAVA Z BAZO*/
         public Database()
         {
             con = new NpgsqlConnection("User ID=grnijxyysgxoft;Password=b5f4443d4fac619bece45a244e8e460cfb04b925e4004629a38619661145a9d8;Host=ec2-3-251-0-202.eu-west-1.compute.amazonaws.com;Port=5432;Database=darujdc2hvtbsg;Pooling=true;SSL Mode=Require;TrustServerCertificate=True;");
             //con = new NpgsqlConnection("Server=ec2-3-251-0-202.eu-west-1.compute.amazonaws.com; User Id=grnijxyysgxoft;" + "Password=b5f4443d4fac619bece45a244e8e460cfb04b925e400629a38619661145a9d8; Database=darujdc2hvtbsg;");
         }
 
+        /*PRIKAŽI KRAJ (V LISTBOXU)*/
         public void ViewKraji(ListBox listBoxKraji)
         {
             using(con)
             {
                 con.Open();
 
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM kraji;",con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM view_kraji();",con);
                     com.ExecuteNonQuery();
 
                     NpgsqlDataReader listKraji = com.ExecuteReader();
@@ -39,7 +41,7 @@ namespace evidence_zivalskih_vrst
                         string cifraPosta = listKraji.GetString(2);
                         //string velikiUporabnik = listKraji.GetString(3);
 
-                        listBoxKraji.Items.Add(imeKraj + " " + cifraPosta);
+                        listBoxKraji.Items.Add(imeKraj + " (" + cifraPosta + ")");
                     }
 
                     listKraji.Close();
@@ -51,6 +53,7 @@ namespace evidence_zivalskih_vrst
             }
         }
 
+        /*DODAJ KRAJ*/
         public void NovKraj(Kraj novKraj)
         {
             using (con) //connection uporabljen le v življenjski dobi item-a
@@ -68,13 +71,14 @@ namespace evidence_zivalskih_vrst
             }
         }
 
+        /*POSODOBI KRAJ*/
         public void UpdateKraj(Kraj updateKraj, int IDlistBoxKraji)
         {
             using (con) //connection uporabljen le v življenjski dobi item-a
             {
                 con.Open();
 
-                NpgsqlCommand com = new NpgsqlCommand("UPDATE kraji SET ime = '" +updateKraj.ImeKraja + "', posta = '" + updateKraj.CifraKraja + "', veliki_uporabniki = '" + updateKraj.VelikiUporabnik + "' WHERE id_k = '" + IDlistBoxKraji + "';", con);
+                NpgsqlCommand com = new NpgsqlCommand("UPDATE kraji SET ime = '" + updateKraj.ImeKraja + "', posta = '" + updateKraj.CifraKraja + "', veliki_uporabniki = '" + updateKraj.VelikiUporabnik + "' WHERE id_k = '" + IDlistBoxKraji + "';", con);
 
                 com.ExecuteNonQuery();
 
@@ -85,6 +89,7 @@ namespace evidence_zivalskih_vrst
             }
         }
 
+        /*ZBRIŠI KRAJ*/
         public void DeleteKraj(int IDlistBoxKraji)
         {
             using (con) //connection uporabljen le v življenjski dobi item-a
