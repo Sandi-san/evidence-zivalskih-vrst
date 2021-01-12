@@ -60,7 +60,7 @@ namespace evidence_zivalskih_vrst
             {
                 con.Open();
 
-                NpgsqlCommand com = new NpgsqlCommand("INSERT INTO kraji (ime, posta, veliki_uporabniki) VALUES ('" + novKraj.ImeKraja + "', '" + novKraj.CifraKraja + "', '" + novKraj.VelikiUporabnik + "');", con);
+                NpgsqlCommand com = new NpgsqlCommand("SELECT insert_kraji('" + novKraj.ImeKraja + "', '" + novKraj.CifraKraja + "', '" + novKraj.VelikiUporabnik + "');", con);
                
                     com.ExecuteNonQuery();
 
@@ -78,7 +78,7 @@ namespace evidence_zivalskih_vrst
             {
                 con.Open();
 
-                NpgsqlCommand com = new NpgsqlCommand("UPDATE kraji SET ime = '" + updateKraj.ImeKraja + "', posta = '" + updateKraj.CifraKraja + "', veliki_uporabniki = '" + updateKraj.VelikiUporabnik + "' WHERE id_k = '" + IDlistBoxKraji + "';", con);
+                NpgsqlCommand com = new NpgsqlCommand("SELECT update_kraji('" + updateKraj.ImeKraja + "', '" + updateKraj.CifraKraja + "', '" + updateKraj.VelikiUporabnik + "', '" + IDlistBoxKraji + "');", con);
 
                 com.ExecuteNonQuery();
 
@@ -96,7 +96,7 @@ namespace evidence_zivalskih_vrst
             {
                 con.Open();
 
-                NpgsqlCommand com = new NpgsqlCommand("DELETE FROM kraji WHERE id_k = '" + IDlistBoxKraji + "';", con);
+                NpgsqlCommand com = new NpgsqlCommand("SELECT delete_kraji('" + IDlistBoxKraji + "');", con);
 
                 com.ExecuteNonQuery();
 

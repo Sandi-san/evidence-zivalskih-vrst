@@ -241,6 +241,7 @@
             this.listBoxKraji.Name = "listBoxKraji";
             this.listBoxKraji.Size = new System.Drawing.Size(148, 277);
             this.listBoxKraji.TabIndex = 10;
+            this.listBoxKraji.SelectedIndexChanged += new System.EventHandler(this.listBoxKraji_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -265,7 +266,7 @@
             // 
             this.labelInfo.AutoSize = true;
             this.labelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelInfo.Location = new System.Drawing.Point(428, 194);
+            this.labelInfo.Location = new System.Drawing.Point(428, 303);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(190, 72);
             this.labelInfo.TabIndex = 13;

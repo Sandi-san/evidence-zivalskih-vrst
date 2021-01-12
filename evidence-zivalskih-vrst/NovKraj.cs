@@ -58,5 +58,10 @@ namespace evidence_zivalskih_vrst
             Database Kraji = new Database();
             Kraji.DeleteKraj(IDlistbox);
         }
+
+        private void listBoxKraji_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            label10.Text = Convert.ToString(listBoxKraji.SelectedIndex + 1);
+        }
     }
 }
