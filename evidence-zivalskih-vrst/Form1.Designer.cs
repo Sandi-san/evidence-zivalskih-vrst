@@ -32,9 +32,12 @@
             this.buttonKrajForm = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxRazredi = new System.Windows.Forms.ListBox();
             this.groupBoxKraji = new System.Windows.Forms.GroupBox();
+            this.groupBoxRazredi = new System.Windows.Forms.GroupBox();
+            this.buttonRazredForm = new System.Windows.Forms.Button();
             this.groupBoxKraji.SuspendLayout();
+            this.groupBoxRazredi.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxKraji
@@ -67,19 +70,19 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(222, 52);
+            this.label2.Location = new System.Drawing.Point(620, 127);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Živalska vrsta";
             // 
-            // listBox1
+            // listBoxRazredi
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(410, 78);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.listBox1.TabIndex = 12;
+            this.listBoxRazredi.FormattingEnabled = true;
+            this.listBoxRazredi.Location = new System.Drawing.Point(6, 29);
+            this.listBoxRazredi.Name = "listBoxRazredi";
+            this.listBoxRazredi.Size = new System.Drawing.Size(159, 290);
+            this.listBoxRazredi.TabIndex = 12;
             // 
             // groupBoxKraji
             // 
@@ -92,13 +95,34 @@
             this.groupBoxKraji.TabStop = false;
             this.groupBoxKraji.Text = "Kraji";
             // 
+            // groupBoxRazredi
+            // 
+            this.groupBoxRazredi.Controls.Add(this.buttonRazredForm);
+            this.groupBoxRazredi.Controls.Add(this.listBoxRazredi);
+            this.groupBoxRazredi.Location = new System.Drawing.Point(193, 14);
+            this.groupBoxRazredi.Name = "groupBoxRazredi";
+            this.groupBoxRazredi.Size = new System.Drawing.Size(171, 388);
+            this.groupBoxRazredi.TabIndex = 14;
+            this.groupBoxRazredi.TabStop = false;
+            this.groupBoxRazredi.Text = "Razredi";
+            // 
+            // buttonRazredForm
+            // 
+            this.buttonRazredForm.Location = new System.Drawing.Point(24, 349);
+            this.buttonRazredForm.Name = "buttonRazredForm";
+            this.buttonRazredForm.Size = new System.Drawing.Size(114, 23);
+            this.buttonRazredForm.TabIndex = 15;
+            this.buttonRazredForm.Text = "Upravljaj razrede";
+            this.buttonRazredForm.UseVisualStyleBackColor = true;
+            this.buttonRazredForm.Click += new System.EventHandler(this.buttonRazredForm_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBoxRazredi);
             this.Controls.Add(this.groupBoxKraji);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
@@ -106,6 +130,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxKraji.ResumeLayout(false);
+            this.groupBoxRazredi.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,8 +141,10 @@
         private System.Windows.Forms.Button buttonKrajForm;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxRazredi;
         private System.Windows.Forms.GroupBox groupBoxKraji;
+        private System.Windows.Forms.GroupBox groupBoxRazredi;
+        private System.Windows.Forms.Button buttonRazredForm;
     }
 }
 

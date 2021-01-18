@@ -68,6 +68,7 @@
             this.buttonDatabaseUpdate.TabIndex = 20;
             this.buttonDatabaseUpdate.Text = "Posodobi tabelo";
             this.buttonDatabaseUpdate.UseVisualStyleBackColor = true;
+            this.buttonDatabaseUpdate.Click += new System.EventHandler(this.Razredi_Load);
             // 
             // label10
             // 
@@ -163,6 +164,7 @@
             this.buttonInsert.TabIndex = 0;
             this.buttonInsert.Text = "Dodaj";
             this.buttonInsert.UseVisualStyleBackColor = true;
+            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
             // 
             // textBoxDodajNaziv
             // 

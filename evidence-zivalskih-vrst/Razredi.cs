@@ -31,5 +31,13 @@ namespace evidence_zivalskih_vrst
 
             this.Hide();
         }
+
+        private void buttonInsert_Click(object sender, EventArgs e)
+        {
+            Razred novRazredPodatki = new Razred(textBoxDodajNaziv.Text);
+
+            Database NovRazred = new Database();
+            NovRazred.InsertRazred(novRazredPodatki);
+        }
     }
 }

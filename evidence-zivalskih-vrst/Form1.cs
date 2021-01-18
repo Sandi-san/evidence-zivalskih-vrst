@@ -28,13 +28,24 @@ namespace evidence_zivalskih_vrst
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Database Kraji = new Database();
-            Kraji.ViewKraji(listBoxKraji);
+            Database ListKraji = new Database();
+            ListKraji.ViewKraji(listBoxKraji);
+
+            Database ListRazredi = new Database();
+            ListRazredi.ViewRazredi(listBoxRazredi);
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void buttonRazredForm_Click(object sender, EventArgs e)
+        {
+            Razredi odpriRazrede = new Razredi();
+            odpriRazrede.Show();
+
+            this.Hide();
         }
     }
 }

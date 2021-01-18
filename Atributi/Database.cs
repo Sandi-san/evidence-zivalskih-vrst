@@ -139,6 +139,24 @@ namespace evidence_zivalskih_vrst
                 con.Dispose();
             }
         }
+
+        /*DODAJ RAZRED*/
+        public void InsertRazred(Razred novRazred)
+        {
+            using (con) //connection uporabljen le v življenjski dobi item-a
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT insert_razredi('" + novRazred.NazivRazreda + "');", con);
+
+                com.ExecuteNonQuery();
+
+                com.Dispose();
+
+
+                con.Close();
+            }
+        }
     }
 }
 
