@@ -105,6 +105,7 @@
             this.buttonDelete.TabIndex = 0;
             this.buttonDelete.Text = "Izbriši";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // groupBoxUpdate
             // 
@@ -126,6 +127,7 @@
             this.buttonUpdate.TabIndex = 0;
             this.buttonUpdate.Text = "Posodobi";
             this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // textBoxUpdateNaziv
             // 

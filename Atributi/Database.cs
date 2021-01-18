@@ -109,7 +109,9 @@ namespace evidence_zivalskih_vrst
             }
         }
 
-        /*PRIKAŽI KRAJ (V LISTBOXU)*/
+
+
+        /*PRIKAŽI RAZRED*/
         public void ViewRazredi(ListBox listBoxRazredi)
         {
             using (con)
@@ -148,6 +150,42 @@ namespace evidence_zivalskih_vrst
                 con.Open();
 
                 NpgsqlCommand com = new NpgsqlCommand("SELECT insert_razredi('" + novRazred.NazivRazreda + "');", con);
+
+                com.ExecuteNonQuery();
+
+                com.Dispose();
+
+
+                con.Close();
+            }
+        }
+
+        /*POSODOBI RAZRED*/
+        public void UpdateRazred(Razred updateRazred, int IDlistBoxRazredi)
+        {
+            using (con) //connection uporabljen le v življenjski dobi item-a
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT update_razredi('" + updateRazred.NazivRazreda + "', '" + IDlistBoxRazredi + "');", con);
+
+                com.ExecuteNonQuery();
+
+                com.Dispose();
+
+
+                con.Close();
+            }
+        }
+
+        /*ZBRIŠI RAZRED*/
+        public void DeleteRazred(int IDlistBoxRazredi)
+        {
+            using (con) //connection uporabljen le v življenjski dobi item-a
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT delete_razredi('" + IDlistBoxRazredi + "');", con);
 
                 com.ExecuteNonQuery();
 

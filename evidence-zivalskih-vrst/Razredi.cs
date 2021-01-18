@@ -39,5 +39,29 @@ namespace evidence_zivalskih_vrst
             Database NovRazred = new Database();
             NovRazred.InsertRazred(novRazredPodatki);
         }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            Razred updateRazredPodatki = new Razred(textBoxUpdateNaziv.Text);
+            int IDlistbox = listBoxRazredi.SelectedIndex + 1;
+
+            Database Razredi = new Database();
+            Razredi.UpdateRazred(updateRazredPodatki, IDlistbox);
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            int IDlistbox = listBoxRazredi.SelectedIndex + 1;
+
+            Database Razredi = new Database();
+            Razredi.DeleteRazred(IDlistbox);
+
+            /*
+            int IDlistbox = listBoxKraji.SelectedIndex + 1;
+
+            Database Kraji = new Database();
+            Kraji.DeleteKraj(IDlistbox);
+             */
+        }
     }
 }
