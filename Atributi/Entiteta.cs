@@ -44,4 +44,19 @@ namespace Atributi
             VelikiUporabnik = velupor;
         }
     }
+
+    public class Razred
+    {
+        public string NazivRazreda { get; set; }
+
+        public Razred()
+        {
+
+        }
+
+        public Razred(string naziv)
+        {
+            NazivRazreda = naziv;
+        }
+    }
 }

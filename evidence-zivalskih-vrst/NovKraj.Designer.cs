@@ -273,10 +273,10 @@
             this.labelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelInfo.Location = new System.Drawing.Point(425, 211);
             this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(139, 108);
+            this.labelInfo.Size = new System.Drawing.Size(139, 90);
             this.labelInfo.TabIndex = 13;
-            this.labelInfo.Text = "Za posodabljanje in \r\nbrisanje krajev, \r\nizberi kraj v \r\nseznamu krajev \r\nkatereg" +
-    "a želiš \r\nupravljati.\r\n";
+            this.labelInfo.Text = "Za posodabljanje in \r\nbrisanje, izberi \r\nvrstico v seznamu \r\nkatero želiš \r\nuprav" +
+    "ljati.";
             this.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // NovKraj

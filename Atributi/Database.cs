@@ -108,6 +108,37 @@ namespace evidence_zivalskih_vrst
                 con.Close();
             }
         }
+
+        /*PRIKAŽI KRAJ (V LISTBOXU)*/
+        public void ViewRazredi(ListBox listBoxRazredi)
+        {
+            using (con)
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM view_razredi();", con);
+                com.ExecuteNonQuery();
+
+                NpgsqlDataReader listRazredi = com.ExecuteReader();
+
+                listBoxRazredi.Items.Clear();
+
+                while (listRazredi.Read())
+                {
+                    //int idRazred = listRazredi.GetInt32(0);
+                    string nazivRazred = listRazredi.GetString(1);
+
+                    listBoxRazredi.Items.Add(nazivRazred);
+                }
+
+                listRazredi.Close();
+
+                com.Dispose();
+
+
+                con.Dispose();
+            }
+        }
     }
 }
 

@@ -13,8 +13,6 @@ namespace evidence_zivalskih_vrst
 {
     public partial class NovKraj : Form
     {
-        Form form1 = new Form1();
-
         public NovKraj()
         {
             InitializeComponent();
