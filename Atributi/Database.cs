@@ -246,6 +246,24 @@ namespace evidence_zivalskih_vrst
                 con.Close();
             }
         }
+
+        /*DODAJ KRAJ_VRSTA*/
+        public void InsertPovprecje(int IDlistBoxKraj, int IDlistBoxVrste)
+        {
+            using (con) //connection uporabljen le v življenjski dobi item-a
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT insert_kraj_vrste('" + IDlistBoxKraj + "', '" + IDlistBoxVrste + "');", con);
+
+                com.ExecuteNonQuery();
+
+                com.Dispose();
+
+
+                con.Close();
+            }
+        }
     }
 }
 

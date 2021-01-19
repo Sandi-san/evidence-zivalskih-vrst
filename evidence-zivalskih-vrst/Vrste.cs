@@ -25,16 +25,27 @@ namespace evidence_zivalskih_vrst
 
             Database Vrste = new Database();
             Vrste.ViewVrsta(listBoxVrste);
+
+            Database Kraji = new Database();
+            Kraji.ViewKraji(listBoxDodajKraj);
         }
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
+            /*Doda Vrsto*/
             Vrsta novaVrstaPodatki = new Vrsta(textBoxDodajIme.Text);
 
             int IDlistbox = listBoxDodajRazred.SelectedIndex + 1;
 
             Database Vrsta = new Database();
             Vrsta.InsertVrsta(novaVrstaPodatki, IDlistbox);
+
+            /*Doda / posodobi povprečno št. (tabela kraj_vrste)*/
+            int IDlistboxKraja = listBoxDodajKraj.SelectedIndex + 1;
+            int IDlistboxVrste = listBoxVrste.SelectedIndex + 1;
+
+            Database Povprecje = new Database();
+            Povprecje.InsertPovprecje(IDlistboxKraja, IDlistboxVrste);
         }
     }
 }
