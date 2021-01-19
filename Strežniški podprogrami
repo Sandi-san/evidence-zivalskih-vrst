@@ -1,1 +1,254 @@
+UPB mini project funkcije in prožilci
 
+ROW_NUMBER pri UPDATE in DELETE – če se zbriše en row, bo v listboxu drugačno število elementov kot id v bazi. Zato row_number primerja ID elementa, z vrstico row-a ter izbere ustreznega. Isto velja za tuje ključe pri VRSTAH
+
+VIEW KRAJI
+CREATE OR REPLACE FUNCTION view_kraji()
+RETURNS TABLE (id_k integer, ime character varying(60), posta character varying(4), veliki_uporabniki character varying(80))
+AS 
+$$
+BEGIN
+	RETURN QUERY (SELECT * FROM kraji);
+END;
+$$
+LANGUAGE 'plpgsql';
+CALL:
+SELECT * FROM view_kraji();
+
+INSERT KRAJ
+CREATE OR REPLACE FUNCTION insert_kraji(kime character varying(60), kposta character varying(4), kvu character varying(80))
+RETURNS void 
+AS 
+$$
+BEGIN
+	INSERT INTO kraji (ime, posta, veliki_uporabniki) 
+	VALUES (kime, kposta, kvu);
+END;
+$$
+LANGUAGE 'plpgsql';
+CALL:
+SELECT insert_kraji('test', 'test', NULL);
+
+UPDATE KRAJ
+CREATE OR REPLACE FUNCTION update_kraji(kime character varying(60), kposta character varying(4), kvu character varying(80), idkraja integer)
+RETURNS void 
+AS 
+$$
+BEGIN
+	UPDATE kraji 
+	SET ime=kime, posta=kposta, veliki_uporabniki=kvu
+	WHERE id_k=(
+		SELECT id_k
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+            
+        FROM
+            kraji
+    ) sub
+WHERE
+    RowNum = idkraja);
+END;
+$$
+LANGUAGE 'plpgsql';
+CALL:
+SELECT update_kraji('test', 'test', NULL, 555);
+
+DELETE KRAJI
+CREATE OR REPLACE FUNCTION delete_kraji(idkraja integer)
+RETURNS void 
+AS 
+$$
+BEGIN
+
+	DELETE FROM kraji 
+	WHERE id_k = (
+		SELECT id_k
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+            
+        FROM
+            kraji
+    ) sub
+WHERE
+    RowNum = idkraja);
+END;
+$$
+LANGUAGE 'plpgsql'; 
+CALL:
+SELECT delete_kraji(554); 
+
+
+VIEW RAZREDI
+CREATE OR REPLACE FUNCTION view_razredi()
+RETURNS TABLE (id_r integer, naziv character varying(100))
+AS 
+$$
+BEGIN
+	RETURN QUERY (SELECT * FROM razredi);
+END;
+$$
+LANGUAGE 'plpgsql';
+CALL:
+SELECT * FROM view_razredi();
+
+INSERT RAZRED
+CREATE OR REPLACE FUNCTION insert_razredi(rnaziv character varying(100))
+RETURNS void 
+AS 
+$$
+BEGIN
+	INSERT INTO razredi(naziv) 
+	VALUES (rnaziv);
+END;
+$$
+LANGUAGE 'plpgsql';
+CALL:
+SELECT insert_razredi('test');
+
+UPDATE RAZRED
+CREATE OR REPLACE FUNCTION update_razredi(rnaziv character varying(100), idrazreda integer)
+RETURNS void 
+AS 
+$$
+BEGIN
+	UPDATE razredi
+	SET naziv=rnaziv
+	WHERE id_r=(
+		SELECT id_r
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_r) AS RowNum, id_r
+            
+        FROM
+            razredi
+    ) sub
+WHERE
+    RowNum = idrazreda);
+END;
+$$
+LANGUAGE 'plpgsql';
+CALL:
+SELECT update_razredi('test', 5);
+
+DELETE RAZRED
+CREATE OR REPLACE FUNCTION delete_razredi(idrazreda  integer)
+RETURNS void 
+AS 
+$$
+BEGIN
+
+	DELETE FROM razredi 
+	WHERE id_r = (
+		SELECT id_r
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_r) AS RowNum, id_r
+            
+        FROM
+            razredi
+    ) sub
+WHERE
+    RowNum = idrazreda);
+END;
+$$
+LANGUAGE 'plpgsql';
+CALL:
+SELECT delete_razredi(5);
+
+
+VIEW VRSTE
+CREATE OR REPLACE FUNCTION view_vrste()
+RETURNS TABLE (id_v integer, ime character varying(120), naziv_v character varying(100))
+AS 
+$$
+BEGIN
+	RETURN QUERY (SELECT v.id_v, v.ime, r.naziv FROM vrste v INNER JOIN razredi r ON r.id_r=v.razred_id);
+END;
+$$
+LANGUAGE 'plpgsql';
+CALL:
+SELECT * FROM view_vrste();
+
+INSERT VRSTE
+CREATE OR REPLACE FUNCTION insert_vrste(vime character varying(120), idrazreda  integer)
+RETURNS void 
+AS 
+$$
+BEGIN
+	INSERT INTO vrste(ime, razred_id) 
+	VALUES (vime, (
+		SELECT id_r
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_r) AS RowNum, id_r
+            
+        FROM
+            razredi
+    ) sub
+WHERE
+    RowNum = idrazreda)
+);
+END;
+$$
+LANGUAGE 'plpgsql';
+CALL:
+SELECT insert_kraji('test', 4);
+
+INSERT KRAJ_VRSTE (insert-a ob insert VRSTA)
+Vnaša v kraj_vrste: v idje vnese sintakso od select tabele, če se vnašena id-ja (od vrste in kraja) ujemata z id kraj_vrste tabele KI ŽE IMA ista id-ja v tujih ključih kraj_id in vrsta_id; potem samo poveča število “živalskih vrst v tem kraji” za 1 (UPDATE stavek)
+Če se vnešena id-ja ne pojavita ISTOČASNO (AND) v nobeni vrstici kraj_vrste tabele; potem ustvari novo vrstico, s tema id-jema in nastavi število na 1 
+CREATE OR REPLACE FUNCTION insert_kraj_vrste(idkraja integer, idvrste integer)
+RETURNS void 
+AS 
+$$
+DECLARE
+	idje integer;
+BEGIN
+FOR idje IN SELECT kv.id_kv FROM kraji k INNER JOIN kraj_vrsta kv ON k.id_k=kv.kraj_id 
+INNER JOIN vrste v ON v.id_v=kv.vrsta_id
+WHERE kv.kraj_id=idkraja AND kv.vrsta_id=idvrste
+LOOP
+	IF (idje = TRUE) THEN
+			UPDATE kraj_vrsta
+			SET povp_stevilo = povp_stevilo + 1
+			WHERE (kraj_id = idkraja) AND (vrsta_id = idvrste);
+	END IF;
+
+	IF (idje = FALSE) THEN
+			INSERT INTO kraj_vrsta(povp_stevilo, kraj_id, vrsta_id)
+			VALUES (1, (
+				SELECT id_k
+		FROM
+			(
+				SELECT
+					ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+
+				FROM
+					kraji
+			) sub
+		WHERE
+			RowNum = idkraja), (
+				SELECT id_v
+		FROM
+			(
+				SELECT
+					ROW_NUMBER () OVER (ORDER BY id_v) AS RowNum, id_v
+
+				FROM
+					vrste
+			) sub
+		WHERE
+			RowNum = idvrste)	
+		);
+	END IF;
+END LOOP;
+END;
+$$
+LANGUAGE 'plpgsql';
