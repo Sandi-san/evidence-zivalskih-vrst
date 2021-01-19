@@ -69,6 +69,11 @@ namespace Atributi
 
         }
 
+        public Vrsta(string ime)
+        {
+            ImeVrste = ime;
+        }
+
         public Vrsta(string naziv, string ime) : base(naziv)
         {
             NazivRazreda = naziv; //vzame od nadrazreda

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Atributi; //referenca z Atributi
 
 namespace evidence_zivalskih_vrst
 {
@@ -21,6 +22,16 @@ namespace evidence_zivalskih_vrst
         {
             Database Razredi = new Database();
             Razredi.ViewRazredi(listBoxDodajRazred);
+        }
+
+        private void buttonInsert_Click(object sender, EventArgs e)
+        {
+            Vrsta novaVrstaPodatki = new Vrsta(textBoxDodajIme.Text);
+
+            int IDlistbox = listBoxDodajRazred.SelectedIndex + 1;
+
+            Database Vrsta = new Database();
+            Vrsta.InsertVrsta(novaVrstaPodatki, IDlistbox);
         }
     }
 }

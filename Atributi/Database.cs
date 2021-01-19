@@ -198,7 +198,7 @@ namespace evidence_zivalskih_vrst
 
 
         /*PRIKAŽI RAZRED*/
-        public void ViewVrste(ListBox listBoxVrste)
+        public void ViewVrsta(ListBox listBoxVrste)
         {
             using (con)
             {
@@ -226,6 +226,24 @@ namespace evidence_zivalskih_vrst
 
 
                 con.Dispose();
+            }
+        }
+
+        /*DODAJ VRSTE*/
+        public void InsertVrsta(Vrsta novaVrsta, int IDlistBoxRazredi)
+        {
+            using (con) //connection uporabljen le v življenjski dobi item-a
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT insert_vrste('" + novaVrsta.ImeVrste + "', '" + IDlistBoxRazredi + "');", con);
+
+                com.ExecuteNonQuery();
+
+                com.Dispose();
+
+
+                con.Close();
             }
         }
     }

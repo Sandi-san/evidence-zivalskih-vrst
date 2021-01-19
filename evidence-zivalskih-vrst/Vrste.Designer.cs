@@ -209,6 +209,7 @@
             this.buttonInsert.TabIndex = 0;
             this.buttonInsert.Text = "Dodaj";
             this.buttonInsert.UseVisualStyleBackColor = true;
+            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
             // 
             // label2
             // 
