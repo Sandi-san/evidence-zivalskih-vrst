@@ -36,3 +36,4 @@ C:\Users\Nickk\source\repos\evidence-zivalskih-vrst\evidence-zivalskih-vrst\bin\
 C:\Users\Nickk\source\repos\evidence-zivalskih-vrst\evidence-zivalskih-vrst\obj\Debug\evidence-zivalskih-vrst.csproj.CopyComplete
 C:\Users\Nickk\source\repos\evidence-zivalskih-vrst\evidence-zivalskih-vrst\obj\Debug\evidence_zivalskih_vrst.NovKraj.resources
 C:\Users\Nickk\source\repos\evidence-zivalskih-vrst\evidence-zivalskih-vrst\obj\Debug\evidence_zivalskih_vrst.Razredi.resources
+C:\Users\Nickk\source\repos\evidence-zivalskih-vrst\evidence-zivalskih-vrst\obj\Debug\evidence_zivalskih_vrst.Vrste.resources

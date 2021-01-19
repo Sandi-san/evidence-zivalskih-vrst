@@ -59,4 +59,20 @@ namespace Atributi
             NazivRazreda = naziv;
         }
     }
+
+    public class Vrsta : Razred
+    {
+        public string ImeVrste { get; set; }
+
+        public Vrsta()
+        {
+
+        }
+
+        public Vrsta(string naziv, string ime) : base(naziv)
+        {
+            NazivRazreda = naziv; //vzame od nadrazreda
+            ImeVrste = ime;
+        }
+    }
 }

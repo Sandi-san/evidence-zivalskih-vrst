@@ -195,6 +195,39 @@ namespace evidence_zivalskih_vrst
                 con.Close();
             }
         }
+
+
+        /*PRIKAŽI RAZRED*/
+        public void ViewVrste(ListBox listBoxVrste)
+        {
+            using (con)
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM view_vrste();", con);
+                com.ExecuteNonQuery();
+
+                NpgsqlDataReader listVrste = com.ExecuteReader();
+
+                listBoxVrste.Items.Clear();
+
+                while (listVrste.Read())
+                {
+                    //int idVrsta = listVrste.GetInt32(0);
+                    string imeVrsta = listVrste.GetString(1);
+                    int idRazreda = listVrste.GetInt32(2);
+
+                    listBoxVrste.Items.Add(imeVrsta);
+                }
+
+                listVrste.Close();
+
+                com.Dispose();
+
+
+                con.Dispose();
+            }
+        }
     }
 }
 

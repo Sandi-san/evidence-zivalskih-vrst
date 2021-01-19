@@ -55,13 +55,6 @@ namespace evidence_zivalskih_vrst
 
             Database Razredi = new Database();
             Razredi.DeleteRazred(IDlistbox);
-
-            /*
-            int IDlistbox = listBoxKraji.SelectedIndex + 1;
-
-            Database Kraji = new Database();
-            Kraji.DeleteKraj(IDlistbox);
-             */
         }
     }
 }

@@ -47,5 +47,13 @@ namespace evidence_zivalskih_vrst
 
             this.Hide();
         }
+
+        private void buttonVrsteForm_Click(object sender, EventArgs e)
+        {
+            Vrste odpriVrste = new Vrste();
+            odpriVrste.Show();
+
+            this.Hide();
+        }
     }
 }

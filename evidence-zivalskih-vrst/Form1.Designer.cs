@@ -36,6 +36,7 @@
             this.groupBoxKraji = new System.Windows.Forms.GroupBox();
             this.groupBoxRazredi = new System.Windows.Forms.GroupBox();
             this.buttonRazredForm = new System.Windows.Forms.Button();
+            this.buttonVrsteForm = new System.Windows.Forms.Button();
             this.groupBoxKraji.SuspendLayout();
             this.groupBoxRazredi.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +62,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(407, 52);
+            this.label1.Location = new System.Drawing.Point(663, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 13);
             this.label1.TabIndex = 3;
@@ -70,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(620, 127);
+            this.label2.Location = new System.Drawing.Point(665, 81);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 4;
@@ -116,11 +117,22 @@
             this.buttonRazredForm.UseVisualStyleBackColor = true;
             this.buttonRazredForm.Click += new System.EventHandler(this.buttonRazredForm_Click);
             // 
+            // buttonVrsteForm
+            // 
+            this.buttonVrsteForm.Location = new System.Drawing.Point(393, 363);
+            this.buttonVrsteForm.Name = "buttonVrsteForm";
+            this.buttonVrsteForm.Size = new System.Drawing.Size(114, 23);
+            this.buttonVrsteForm.TabIndex = 16;
+            this.buttonVrsteForm.Text = "Upravljaj vrste";
+            this.buttonVrsteForm.UseVisualStyleBackColor = true;
+            this.buttonVrsteForm.Click += new System.EventHandler(this.buttonVrsteForm_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonVrsteForm);
             this.Controls.Add(this.groupBoxRazredi);
             this.Controls.Add(this.groupBoxKraji);
             this.Controls.Add(this.label2);
@@ -145,6 +157,7 @@
         private System.Windows.Forms.GroupBox groupBoxKraji;
         private System.Windows.Forms.GroupBox groupBoxRazredi;
         private System.Windows.Forms.Button buttonRazredForm;
+        private System.Windows.Forms.Button buttonVrsteForm;
     }
 }
 
