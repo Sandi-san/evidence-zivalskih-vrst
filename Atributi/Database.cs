@@ -14,7 +14,7 @@ namespace evidence_zivalskih_vrst
     {
         private NpgsqlConnection con;
         
-        /*POVEZAVA Z BAZO*/
+        /*POVEZAVA Z BAZO (HEROKU)*/
         public Database()
         {
             con = new NpgsqlConnection("User ID=grnijxyysgxoft;Password=b5f4443d4fac619bece45a244e8e460cfb04b925e4004629a38619661145a9d8;Host=ec2-3-251-0-202.eu-west-1.compute.amazonaws.com;Port=5432;Database=darujdc2hvtbsg;Pooling=true;SSL Mode=Require;TrustServerCertificate=True;");
@@ -215,9 +215,9 @@ namespace evidence_zivalskih_vrst
                 {
                     //int idVrsta = listVrste.GetInt32(0);
                     string imeVrsta = listVrste.GetString(1);
-                    int idRazreda = listVrste.GetInt32(2);
+                    string nazivRazreda = listVrste.GetString(2);
 
-                    listBoxVrste.Items.Add(imeVrsta);
+                    listBoxVrste.Items.Add(imeVrsta + " (" + nazivRazreda + ")");
                 }
 
                 listVrste.Close();

@@ -22,6 +22,9 @@ namespace evidence_zivalskih_vrst
         {
             Database Razredi = new Database();
             Razredi.ViewRazredi(listBoxDodajRazred);
+
+            Database Vrste = new Database();
+            Vrste.ViewVrsta(listBoxVrste);
         }
 
         private void buttonInsert_Click(object sender, EventArgs e)

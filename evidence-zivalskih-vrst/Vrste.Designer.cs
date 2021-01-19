@@ -49,6 +49,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
             this.listBoxDodajRazred = new System.Windows.Forms.ListBox();
+            this.listBoxDodajKraj = new System.Windows.Forms.ListBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBoxDelete.SuspendLayout();
             this.groupBoxUpdate.SuspendLayout();
             this.groupBoxInsert.SuspendLayout();
@@ -74,6 +76,7 @@
             this.buttonDatabaseUpdate.TabIndex = 20;
             this.buttonDatabaseUpdate.Text = "Posodobi tabelo";
             this.buttonDatabaseUpdate.UseVisualStyleBackColor = true;
+            this.buttonDatabaseUpdate.Click += new System.EventHandler(this.Vrste_Load);
             // 
             // label10
             // 
@@ -189,6 +192,8 @@
             // 
             // groupBoxInsert
             // 
+            this.groupBoxInsert.Controls.Add(this.listBoxDodajKraj);
+            this.groupBoxInsert.Controls.Add(this.label3);
             this.groupBoxInsert.Controls.Add(this.listBoxDodajRazred);
             this.groupBoxInsert.Controls.Add(this.buttonInsert);
             this.groupBoxInsert.Controls.Add(this.label2);
@@ -196,14 +201,14 @@
             this.groupBoxInsert.Controls.Add(this.label1);
             this.groupBoxInsert.Location = new System.Drawing.Point(12, 87);
             this.groupBoxInsert.Name = "groupBoxInsert";
-            this.groupBoxInsert.Size = new System.Drawing.Size(190, 326);
+            this.groupBoxInsert.Size = new System.Drawing.Size(190, 351);
             this.groupBoxInsert.TabIndex = 15;
             this.groupBoxInsert.TabStop = false;
             this.groupBoxInsert.Text = "Dodaj novo vrsto";
             // 
             // buttonInsert
             // 
-            this.buttonInsert.Location = new System.Drawing.Point(59, 271);
+            this.buttonInsert.Location = new System.Drawing.Point(57, 311);
             this.buttonInsert.Name = "buttonInsert";
             this.buttonInsert.Size = new System.Drawing.Size(75, 23);
             this.buttonInsert.TabIndex = 0;
@@ -214,7 +219,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 113);
+            this.label2.Location = new System.Drawing.Point(25, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 6;
@@ -222,7 +227,7 @@
             // 
             // textBoxDodajIme
             // 
-            this.textBoxDodajIme.Location = new System.Drawing.Point(25, 63);
+            this.textBoxDodajIme.Location = new System.Drawing.Point(25, 44);
             this.textBoxDodajIme.MaxLength = 60;
             this.textBoxDodajIme.Name = "textBoxDodajIme";
             this.textBoxDodajIme.Size = new System.Drawing.Size(143, 20);
@@ -231,7 +236,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 47);
+            this.label1.Location = new System.Drawing.Point(22, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(24, 13);
             this.label1.TabIndex = 5;
@@ -250,10 +255,27 @@
             // listBoxDodajRazred
             // 
             this.listBoxDodajRazred.FormattingEnabled = true;
-            this.listBoxDodajRazred.Location = new System.Drawing.Point(28, 132);
+            this.listBoxDodajRazred.Location = new System.Drawing.Point(28, 96);
             this.listBoxDodajRazred.Name = "listBoxDodajRazred";
-            this.listBoxDodajRazred.Size = new System.Drawing.Size(140, 121);
+            this.listBoxDodajRazred.Size = new System.Drawing.Size(140, 82);
             this.listBoxDodajRazred.TabIndex = 23;
+            // 
+            // listBoxDodajKraj
+            // 
+            this.listBoxDodajKraj.FormattingEnabled = true;
+            this.listBoxDodajKraj.Location = new System.Drawing.Point(25, 207);
+            this.listBoxDodajKraj.Name = "listBoxDodajKraj";
+            this.listBoxDodajKraj.Size = new System.Drawing.Size(140, 82);
+            this.listBoxDodajKraj.TabIndex = 25;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(22, 191);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(25, 13);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Kraj";
             // 
             // Vrste
             // 
@@ -304,5 +326,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.ListBox listBoxDodajRazred;
+        private System.Windows.Forms.ListBox listBoxDodajKraj;
+        private System.Windows.Forms.Label label3;
     }
 }
