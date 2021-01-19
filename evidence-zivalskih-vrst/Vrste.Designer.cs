@@ -292,6 +292,7 @@
             this.Controls.Add(this.labelTitle);
             this.Name = "Vrste";
             this.Text = "Vrste";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Vrste_FormClosed);
             this.Load += new System.EventHandler(this.Vrste_Load);
             this.groupBoxDelete.ResumeLayout(false);
             this.groupBoxUpdate.ResumeLayout(false);

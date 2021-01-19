@@ -30,9 +30,18 @@ namespace evidence_zivalskih_vrst
             Kraji.ViewKraji(listBoxDodajKraj);
         }
 
+        private void Vrste_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+
+            this.Hide();
+        }
+
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            /*Doda Vrsto*/
+            /*
+            /*Doda Vrsto*
             Vrsta novaVrstaPodatki = new Vrsta(textBoxDodajIme.Text);
 
             int IDlistbox = listBoxDodajRazred.SelectedIndex + 1;
@@ -40,12 +49,23 @@ namespace evidence_zivalskih_vrst
             Database Vrsta = new Database();
             Vrsta.InsertVrsta(novaVrstaPodatki, IDlistbox);
 
-            /*Doda / posodobi povprečno št. (tabela kraj_vrste)*/
+            /*Doda / posodobi povprečno št. (tabela kraj_vrste)*
             int IDlistboxKraja = listBoxDodajKraj.SelectedIndex + 1;
-            int IDlistboxVrste = listBoxVrste.SelectedIndex + 1;
+            int IDlistboxVrste = ;
 
             Database Povprecje = new Database();
             Povprecje.InsertPovprecje(IDlistboxKraja, IDlistboxVrste);
+            */
+
+            Vrsta novaVrstaPodatki = new Vrsta(textBoxDodajIme.Text);
+
+            int IDlistboxRazred = listBoxDodajRazred.SelectedIndex + 1;
+            int IDlistboxKraj = listBoxDodajKraj.SelectedIndex + 1;
+
+            Database Vrsta = new Database();
+            Vrsta.InsertVrsta(novaVrstaPodatki, IDlistboxRazred, IDlistboxKraj);
         }
+
+
     }
 }

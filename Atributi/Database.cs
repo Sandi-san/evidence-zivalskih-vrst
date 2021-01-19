@@ -230,31 +230,13 @@ namespace evidence_zivalskih_vrst
         }
 
         /*DODAJ VRSTE*/
-        public void InsertVrsta(Vrsta novaVrsta, int IDlistBoxRazredi)
+        public void InsertVrsta(Vrsta novaVrsta, int IDlistBoxRazredi, int IDlistboxKraja)
         {
             using (con) //connection uporabljen le v življenjski dobi item-a
             {
                 con.Open();
 
-                NpgsqlCommand com = new NpgsqlCommand("SELECT insert_vrste('" + novaVrsta.ImeVrste + "', '" + IDlistBoxRazredi + "');", con);
-
-                com.ExecuteNonQuery();
-
-                com.Dispose();
-
-
-                con.Close();
-            }
-        }
-
-        /*DODAJ KRAJ_VRSTA*/
-        public void InsertPovprecje(int IDlistBoxKraj, int IDlistBoxVrste)
-        {
-            using (con) //connection uporabljen le v življenjski dobi item-a
-            {
-                con.Open();
-
-                NpgsqlCommand com = new NpgsqlCommand("SELECT insert_kraj_vrste('" + IDlistBoxKraj + "', '" + IDlistBoxVrste + "');", con);
+                NpgsqlCommand com = new NpgsqlCommand("SELECT insert_vrste('" + novaVrsta.ImeVrste + "', '" + IDlistBoxRazredi + "', '" + IDlistboxKraja + "');", con);
 
                 com.ExecuteNonQuery();
 
