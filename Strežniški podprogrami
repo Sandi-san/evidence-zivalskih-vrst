@@ -8,7 +8,7 @@ RETURNS TABLE (id_k integer, ime character varying(60), posta character varying(
 AS 
 $$
 BEGIN
-	RETURN QUERY (SELECT * FROM kraji);
+	RETURN QUERY (SELECT * FROM kraji ORDER BY id_k ASC);
 END;
 $$
 LANGUAGE 'plpgsql';
@@ -88,7 +88,7 @@ RETURNS TABLE (id_r integer, naziv character varying(100))
 AS 
 $$
 BEGIN
-	RETURN QUERY (SELECT * FROM razredi);
+	RETURN QUERY (SELECT * FROM razredi ORDER BY id_r ASC);
 END;
 $$
 LANGUAGE 'plpgsql';
@@ -168,7 +168,7 @@ RETURNS TABLE (id_v integer, ime character varying(120), naziv_v character varyi
 AS 
 $$
 BEGIN
-	RETURN QUERY (SELECT v.id_v, v.ime, r.naziv FROM vrste v INNER JOIN razredi r ON r.id_r=v.razred_id);
+	RETURN QUERY (SELECT v.id_v, v.ime, r.naziv FROM vrste v INNER JOIN razredi r ON r.id_r=v.razred_id ORDER BY v.id_v ASC);
 END;
 $$
 LANGUAGE 'plpgsql';
@@ -219,6 +219,92 @@ LANGUAGE 'plpgsql';
 CALL:
 SELECT insert_vrste('test', 4, 20);
 
+UPDATE VRSTE
+CREATE OR REPLACE FUNCTION update_vrste(vime character varying(120), idrazreda integer, idvrste integer)
+RETURNS void 
+AS 
+$$
+BEGIN
+	UPDATE vrste
+	SET ime=vime, 
+	razred_id=(
+		SELECT id_r
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_r) AS RowNum, id_r
+            
+        FROM
+            razredi
+    ) sub
+WHERE
+    RowNum = idrazreda)
+	
+	WHERE id_v=(
+		SELECT id_v
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_v) AS RowNum, id_v
+            
+        FROM
+            vrste
+    ) sub
+WHERE
+    RowNum = idvrste);
+END;
+$$
+LANGUAGE 'plpgsql';
+
+UPDATE SAMO KRAJ_VRSTE
+--!
+Če je ob update bil tudi spremenjen kraj vrste, kliče funkcijo za posodabljanje relacije med vrstam in krajih (kraj_vrste)
+!-->
+CREATE OR REPLACE FUNCTION update_kraj_vrste(idkraja integer, idvrste integer)
+RETURNS void 
+AS 
+$$
+BEGIN
+	UPDATE kraj_vrsta
+	SET kraj_id = (
+				SELECT id_k
+		FROM
+			(
+				SELECT
+					ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+
+				FROM
+					kraji
+			) sub
+		WHERE
+			RowNum = idkraja), vrsta_id = (
+		SELECT id_v
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_v) AS RowNum, id_v
+            
+        FROM
+            vrste
+    ) sub
+WHERE
+    RowNum = idvrste)
+	
+	WHERE vrsta_id = (
+		SELECT id_v
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_v) AS RowNum, id_v
+            
+        FROM
+            vrste
+    ) sub
+WHERE
+    RowNum = idvrste);
+END;
+$$
+LANGUAGE 'plpgsql';
 -------------------------------------------------------------------------------------------------------------------------------------------
 INSERT VRSTE IN KRAJ_VRSTE
 --!
@@ -356,3 +442,105 @@ END LOOP;
 END;
 $$
 LANGUAGE 'plpgsql';
+
+UPDATE KRAJ_VRSTE Z CHECK SQL
+CREATE OR REPLACE FUNCTION update_kraj_vrste(idkraja integer, idvrste integer)
+RETURNS void 
+AS 
+$$
+BEGIN	
+
+	IF EXISTS(SELECT kv.id_kv FROM kraji k INNER JOIN kraj_vrsta kv ON k.id_k=kv.kraj_id 
+INNER JOIN vrste v ON v.id_v=kv.vrsta_id
+WHERE kv.kraj_id=idkraja AND kv.vrsta_id=idvrste) THEN
+			UPDATE kraj_vrsta
+			SET povp_stevilo = povp_stevilo - 1
+			WHERE (kraj_id != (
+			SELECT id_k
+	FROM
+		(
+			SELECT
+				ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+
+			FROM
+				kraji
+		) sub
+	WHERE
+		RowNum = idkraja)) AND 
+		(vrsta_id = (
+		SELECT id_v
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_v) AS RowNum, id_v
+            
+        FROM
+            vrste
+    ) sub
+WHERE
+    RowNum = idvrste));
+	
+	UPDATE kraj_vrsta
+			SET povp_stevilo = povp_stevilo + 1
+			WHERE (kraj_id = (
+			SELECT id_k
+	FROM
+		(
+			SELECT
+				ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+
+			FROM
+				kraji
+		) sub
+	WHERE
+		RowNum = idkraja)) AND 
+		(vrsta_id = (
+		SELECT id_v
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_v) AS RowNum, id_v
+            
+        FROM
+            vrste
+    ) sub
+WHERE
+    RowNum = idvrste)); 
+	END IF;
+
+	IF NOT EXISTS (SELECT kv.id_kv FROM kraji k INNER JOIN kraj_vrsta kv ON k.id_k=kv.kraj_id 
+INNER JOIN vrste v ON v.id_v=kv.vrsta_id
+WHERE kv.kraj_id=idkraja AND kv.vrsta_id=idvrste) THEN
+			INSERT INTO kraj_vrsta(povp_stevilo, kraj_id, vrsta_id)
+			VALUES (1, (
+				SELECT id_k
+		FROM
+			(
+				SELECT
+					ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+
+				FROM
+					kraji
+			) sub
+		WHERE
+			RowNum = idkraja), (
+		SELECT id_v
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_v) AS RowNum, id_v
+            
+        FROM
+            vrste
+    ) sub
+WHERE
+    RowNum = idvrste));
+	END IF;
+
+END;
+$$
+LANGUAGE 'plpgsql';
+TRIGGER ZA KRAJ_VRSTE UPDATE – PO UPDATE VRSTE
+CREATE OR REPLACE TRIGGER posodobi_kraj_vrste
+AFTER UPDATE ON vrste
+FOR EACH ROW EXECUTE PROCEDURE update_kraj_vrste();
