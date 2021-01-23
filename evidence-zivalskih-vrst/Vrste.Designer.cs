@@ -62,11 +62,10 @@
             this.labelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelInfo.Location = new System.Drawing.Point(425, 217);
             this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(152, 180);
+            this.labelInfo.Size = new System.Drawing.Size(139, 90);
             this.labelInfo.TabIndex = 21;
             this.labelInfo.Text = "Za posodabljanje in \r\nbrisanje, izberi \r\nvrstico v seznamu \r\nkatero želiš \r\nuprav" +
-    "ljati.\r\n\r\nInsert mora imeti \r\noba izbrana\r\nUpdate: drugačen kraj\r\nupdatea kraj_v" +
-    "rste";
+    "ljati.";
             this.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonDatabaseUpdate
@@ -77,7 +76,7 @@
             this.buttonDatabaseUpdate.TabIndex = 20;
             this.buttonDatabaseUpdate.Text = "Posodobi tabelo";
             this.buttonDatabaseUpdate.UseVisualStyleBackColor = true;
-            this.buttonDatabaseUpdate.Click += new System.EventHandler(this.Vrste_Load);
+            this.buttonDatabaseUpdate.Click += new System.EventHandler(this.UpdateTabela);
             // 
             // label10
             // 

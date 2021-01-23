@@ -36,6 +36,12 @@ namespace evidence_zivalskih_vrst
             KrajiUpdate.ViewKraji(listBoxUpdateKraj);
         }
 
+        private void UpdateTabela(object sender, EventArgs e)
+        {
+            Database Vrste = new Database();
+            Vrste.ViewVrsta(listBoxVrste);
+        }
+
         private void Vrste_FormClosed(object sender, FormClosedEventArgs e)
         {
             Form1 form1 = new Form1();
@@ -46,60 +52,81 @@ namespace evidence_zivalskih_vrst
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            /*
-            /*Doda Vrsto*
-            Vrsta novaVrstaPodatki = new Vrsta(textBoxDodajIme.Text);
+            if (String.IsNullOrEmpty(textBoxDodajIme.Text) || listBoxDodajKraj.SelectedIndex <= -1 || listBoxDodajRazred.SelectedIndex <= -1)
+            {
+                MessageBox.Show("Izberite vse potrebne parametre!");
+            }
+            else
+            {
+                /*
+                /*Doda Vrsto*
+                Vrsta novaVrstaPodatki = new Vrsta(textBoxDodajIme.Text);
 
-            int IDlistbox = listBoxDodajRazred.SelectedIndex + 1;
+                int IDlistbox = listBoxDodajRazred.SelectedIndex + 1;
 
-            Database Vrsta = new Database();
-            Vrsta.InsertVrsta(novaVrstaPodatki, IDlistbox);
+                Database Vrsta = new Database();
+                Vrsta.InsertVrsta(novaVrstaPodatki, IDlistbox);
 
-            /*Doda / posodobi povprečno št. (tabela kraj_vrste)*
-            int IDlistboxKraja = listBoxDodajKraj.SelectedIndex + 1;
-            int IDlistboxVrste = ;
+                /*Doda / posodobi povprečno št. (tabela kraj_vrste)*
+                int IDlistboxKraja = listBoxDodajKraj.SelectedIndex + 1;
+                int IDlistboxVrste = ;
 
-            Database Povprecje = new Database();
-            Povprecje.InsertPovprecje(IDlistboxKraja, IDlistboxVrste);
-            */
+                Database Povprecje = new Database();
+                Povprecje.InsertPovprecje(IDlistboxKraja, IDlistboxVrste);
+                */
 
-            Vrsta novaVrstaPodatki = new Vrsta(textBoxDodajIme.Text);
+                Vrsta novaVrstaPodatki = new Vrsta(textBoxDodajIme.Text);
 
-            int IDlistboxRazred = listBoxDodajRazred.SelectedIndex + 1;
-            int IDlistboxKraj = listBoxDodajKraj.SelectedIndex + 1;
+                int IDlistboxRazred = listBoxDodajRazred.SelectedIndex + 1;
+                int IDlistboxKraj = listBoxDodajKraj.SelectedIndex + 1;
 
-            Database Vrsta = new Database();
-            Vrsta.InsertVrsta(novaVrstaPodatki, IDlistboxRazred, IDlistboxKraj);
+                Database Vrsta = new Database();
+                Vrsta.InsertVrsta(novaVrstaPodatki, IDlistboxRazred, IDlistboxKraj);
+            }
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            Vrsta updateVrstaPodatki = new Vrsta(textBoxUpdateIme.Text);
-
-            //ID Razreda
-            int IDlistboxRazred = listBoxUpdateRazred.SelectedIndex + 1;
-            //ID Vrste
-            int IDlistbox = listBoxVrste.SelectedIndex + 1;
-
-            Database Vrsta = new Database();
-            Vrsta.UpdateVrsta(updateVrstaPodatki, IDlistboxRazred, IDlistbox);
-
-            if (listBoxUpdateKraj.SelectedIndex > -1)
+            if (String.IsNullOrEmpty(textBoxUpdateIme.Text) || listBoxUpdateRazred.SelectedIndex <= -1 || listBoxVrste.SelectedIndex <= -1)
             {
-                //ID Kraja
-                int IDlistboxKraj = listBoxUpdateKraj.SelectedIndex + 1;
+                MessageBox.Show("Izberite vse potrebne parametre!");
+            }
+            else
+            {
+                Vrsta updateVrstaPodatki = new Vrsta(textBoxUpdateIme.Text);
 
-                Database Kraj_Vrsta = new Database();
-                Kraj_Vrsta.UpdateKrajVrsta(IDlistboxKraj, IDlistbox);
+                //ID Razreda
+                int IDlistboxRazred = listBoxUpdateRazred.SelectedIndex + 1;
+                //ID Vrste
+                int IDlistbox = listBoxVrste.SelectedIndex + 1;
+
+                Database Vrsta = new Database();
+                Vrsta.UpdateVrsta(updateVrstaPodatki, IDlistboxRazred, IDlistbox);
+
+                if (listBoxUpdateKraj.SelectedIndex > -1)
+                {
+                    //ID Kraja
+                    int IDlistboxKraj = listBoxUpdateKraj.SelectedIndex + 1;
+
+                    Database Kraj_Vrsta = new Database();
+                    Kraj_Vrsta.UpdateKrajVrsta(IDlistboxKraj, IDlistbox);
+                }
             }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            int IDlistbox = listBoxVrste.SelectedIndex + 1;
+            if (listBoxVrste.SelectedIndex <= -1)
+            {
+                MessageBox.Show("Izberite vse potrebne parametre!");
+            }
+            else
+            {
+                int IDlistbox = listBoxVrste.SelectedIndex + 1;
 
-            Database Vrsta = new Database();
-            Vrsta.DeleteVrsta(IDlistbox);
+                Database Vrsta = new Database();
+                Vrsta.DeleteVrsta(IDlistbox);
+            }
         }
     }
 }
