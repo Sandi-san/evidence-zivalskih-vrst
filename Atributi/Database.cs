@@ -246,6 +246,41 @@ namespace evidence_zivalskih_vrst
                 con.Close();
             }
         }
+
+        /*UPDATE VRSTE*/
+        public void UpdateVrsta(Vrsta updateVrsta, int IDlistBoxRazredi, int IDlistbox)
+        {
+            using (con) //connection uporabljen le v življenjski dobi item-a
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT update_vrste('" + updateVrsta.ImeVrste + "', '" + IDlistBoxRazredi + "', '" + IDlistbox + "');", con);
+
+                com.ExecuteNonQuery();
+
+                com.Dispose();
+
+
+                con.Close();
+            }
+        }
+        /*UPDATE KRAJ_VRSTE (če je spremenjen kraj)*/
+        public void UpdateKrajVrsta(int IDlistBoxKraj, int IDlistbox)
+        {
+            using (con) //connection uporabljen le v življenjski dobi item-a
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT update_kraj_vrste('" + IDlistBoxKraj + "', '" + IDlistbox + "');", con);
+
+                com.ExecuteNonQuery();
+
+                com.Dispose();
+
+
+                con.Close();
+            }
+        }
     }
 }
 

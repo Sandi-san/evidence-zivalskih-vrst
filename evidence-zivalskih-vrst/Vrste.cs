@@ -20,14 +20,20 @@ namespace evidence_zivalskih_vrst
 
         private void Vrste_Load(object sender, EventArgs e)
         {
-            Database Razredi = new Database();
-            Razredi.ViewRazredi(listBoxDodajRazred);
-
             Database Vrste = new Database();
             Vrste.ViewVrsta(listBoxVrste);
 
+            Database Razredi = new Database();
+            Razredi.ViewRazredi(listBoxDodajRazred);
+
             Database Kraji = new Database();
             Kraji.ViewKraji(listBoxDodajKraj);
+
+            Database RazrediUpdate = new Database();
+            RazrediUpdate.ViewRazredi(listBoxUpdateRazred);
+
+            Database KrajiUpdate = new Database();
+            KrajiUpdate.ViewKraji(listBoxUpdateKraj);
         }
 
         private void Vrste_FormClosed(object sender, FormClosedEventArgs e)
@@ -66,6 +72,26 @@ namespace evidence_zivalskih_vrst
             Vrsta.InsertVrsta(novaVrstaPodatki, IDlistboxRazred, IDlistboxKraj);
         }
 
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            Vrsta updateVrstaPodatki = new Vrsta(textBoxUpdateIme.Text);
 
+            //ID Razreda
+            int IDlistboxRazred = listBoxUpdateRazred.SelectedIndex + 1;
+            //ID Vrste
+            int IDlistbox = listBoxVrste.SelectedIndex + 1;
+
+            Database Vrsta = new Database();
+            Vrsta.UpdateVrsta(updateVrstaPodatki, IDlistboxRazred, IDlistbox);
+
+            if (listBoxUpdateKraj.SelectedIndex > -1)
+            {
+                //ID Kraja
+                int IDlistboxKraj = listBoxUpdateKraj.SelectedIndex + 1;
+
+                Database Kraj_Vrsta = new Database();
+                Kraj_Vrsta.UpdateKrajVrsta(IDlistboxKraj, IDlistbox);
+            }
+        }
     }
 }
