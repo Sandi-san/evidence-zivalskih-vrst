@@ -175,7 +175,111 @@ LANGUAGE 'plpgsql';
 CALL:
 SELECT * FROM view_vrste();
 
-INSERT VRSTE
+INSERT VRSTE IN KRAJ_VRSTE
+--!
+Funkcija prvo vnese novo vrsto, nato pa doda novo vrsto v tabelo kraj_vrste, kjer vnese novo povprečno število (1, saj je bil 1 vnos), nato doda še id_kraja in id NOVO ustvarjene vrste
+!-->
+CREATE OR REPLACE FUNCTION insert_vrste(vime character varying(120), idrazreda integer, idkraja integer)
+RETURNS void 
+AS 
+$$
+BEGIN
+	INSERT INTO vrste(ime, razred_id) 
+	VALUES (vime, (
+		SELECT id_r
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_r) AS RowNum, id_r
+            
+        FROM
+            razredi
+    ) sub
+WHERE
+    RowNum = idrazreda)
+);
+
+			INSERT INTO kraj_vrsta(povp_stevilo, kraj_id, vrsta_id)
+			VALUES (1, (
+				SELECT id_k
+		FROM
+			(
+				SELECT
+					ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+
+				FROM
+					kraji
+			) sub
+		WHERE
+			RowNum = idkraja), (SELECT MAX(id_v) FROM vrste)
+	);
+END;
+$$
+LANGUAGE 'plpgsql';
+CALL:
+SELECT insert_vrste('test', 4, 20);
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+INSERT VRSTE IN KRAJ_VRSTE
+--!
+Funkcija prvo vnese novo vrsto, nato pa doda novo vrsto v tabelo kraj_vrste, kjer vnese novo povprečno število (1, saj je bil 1 vnos), nato doda še id_kraja in id NOVO ustvarjene vrste
+V if stavku gleda, če že obstaja vrsta v kraj_vrste, ki vsebuje isti id_kraja in isti id_vrste (kar ni mogoče, saj kraj_vrsta dobi čisto nov id vrste ki se pravkar ustvarila [vseeno bom zapisal to verzijo])
+!-->
+CREATE OR REPLACE FUNCTION insert_vrste(vime character varying(120), idrazreda integer, idkraja integer)
+RETURNS void 
+AS 
+$$
+DECLARE
+	idje integer;
+	novidv integer;
+BEGIN
+	INSERT INTO vrste(ime, razred_id) 
+	VALUES (vime, (
+		SELECT id_r
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_r) AS RowNum, id_r
+            
+        FROM
+            razredi
+    ) sub
+WHERE
+    RowNum = idrazreda)
+);
+novidv := (SELECT MAX(id_v) FROM vrste);
+
+FOR idje IN SELECT kv.id_kv FROM kraji k INNER JOIN kraj_vrsta kv ON k.id_k=kv.kraj_id 
+INNER JOIN vrste v ON v.id_v=kv.vrsta_id
+WHERE kv.kraj_id=idkraja AND kv.vrsta_id=novidv
+LOOP
+	IF (idje = TRUE) THEN
+			UPDATE kraj_vrsta
+			SET povp_stevilo = povp_stevilo + 1
+			WHERE (kraj_id = idkraja) AND (vrsta_id = novidv);
+	END IF;
+
+	IF (idje = FALSE) THEN
+			INSERT INTO kraj_vrsta(povp_stevilo, kraj_id, vrsta_id)
+			VALUES (1, (
+				SELECT id_k
+		FROM
+			(
+				SELECT
+					ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+
+				FROM
+					kraji
+			) sub
+		WHERE
+			RowNum = idkraja), novidv);
+	END IF;
+END LOOP;
+END;
+$$
+LANGUAGE 'plpgsql'; 
+
+INSERT VRSTE (zamenjano z INSERT VRSTE IN KRAJ_VRSTE)
 CREATE OR REPLACE FUNCTION insert_vrste(vime character varying(120), idrazreda  integer)
 RETURNS void 
 AS 
@@ -199,9 +303,9 @@ END;
 $$
 LANGUAGE 'plpgsql';
 CALL:
-SELECT insert_kraji('test', 4);
+SELECT insert_vrste('test', 4);
 
-INSERT KRAJ_VRSTE (insert-a ob insert VRSTA)
+INSERT KRAJ_VRSTE (insert-a ob insert VRSTA) (zamenjano z INSERT VRSTE IN KRAJ_VRSTE)
 Vnaša v kraj_vrste: v idje vnese sintakso od select tabele, če se vnašena id-ja (od vrste in kraja) ujemata z id kraj_vrste tabele KI ŽE IMA ista id-ja v tujih ključih kraj_id in vrsta_id; potem samo poveča število “živalskih vrst v tem kraji” za 1 (UPDATE stavek)
 Če se vnešena id-ja ne pojavita ISTOČASNO (AND) v nobeni vrstici kraj_vrste tabele; potem ustvari novo vrstico, s tema id-jema in nastavi število na 1 
 CREATE OR REPLACE FUNCTION insert_kraj_vrste(idkraja integer, idvrste integer)
