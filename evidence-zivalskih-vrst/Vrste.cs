@@ -93,5 +93,13 @@ namespace evidence_zivalskih_vrst
                 Kraj_Vrsta.UpdateKrajVrsta(IDlistboxKraj, IDlistbox);
             }
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            int IDlistbox = listBoxVrste.SelectedIndex + 1;
+
+            Database Vrsta = new Database();
+            Vrsta.DeleteVrsta(IDlistbox);
+        }
     }
 }

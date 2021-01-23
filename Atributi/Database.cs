@@ -281,6 +281,23 @@ namespace evidence_zivalskih_vrst
                 con.Close();
             }
         }
+        /*DELETE VRSTE*/
+        public void DeleteVrsta(int IDlistbox)
+        {
+            using (con) //connection uporabljen le v življenjski dobi item-a
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT delete_vrste('" + IDlistbox + "');", con);
+
+                com.ExecuteNonQuery();
+
+                com.Dispose();
+
+
+                con.Close();
+            }
+        }
     }
 }
 

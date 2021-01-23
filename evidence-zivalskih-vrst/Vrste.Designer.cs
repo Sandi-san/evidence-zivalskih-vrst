@@ -35,7 +35,13 @@
             this.groupBoxDelete = new System.Windows.Forms.GroupBox();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.groupBoxUpdate = new System.Windows.Forms.GroupBox();
+            this.listBoxUpdateKraj = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.buttonUpdate = new System.Windows.Forms.Button();
+            this.listBoxUpdateRazred = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxUpdateIme = new System.Windows.Forms.TextBox();
             this.groupBoxInsert = new System.Windows.Forms.GroupBox();
             this.listBoxDodajKraj = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,12 +51,6 @@
             this.textBoxDodajIme = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
-            this.listBoxUpdateKraj = new System.Windows.Forms.ListBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.listBoxUpdateRazred = new System.Windows.Forms.ListBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxUpdateIme = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBoxDelete.SuspendLayout();
             this.groupBoxUpdate.SuspendLayout();
             this.groupBoxInsert.SuspendLayout();
@@ -114,6 +114,7 @@
             this.buttonDelete.TabIndex = 0;
             this.buttonDelete.Text = "Izbriši";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // groupBoxUpdate
             // 
@@ -131,6 +132,23 @@
             this.groupBoxUpdate.TabStop = false;
             this.groupBoxUpdate.Text = "Posodobi obstoječo vrsto";
             // 
+            // listBoxUpdateKraj
+            // 
+            this.listBoxUpdateKraj.FormattingEnabled = true;
+            this.listBoxUpdateKraj.Location = new System.Drawing.Point(25, 207);
+            this.listBoxUpdateKraj.Name = "listBoxUpdateKraj";
+            this.listBoxUpdateKraj.Size = new System.Drawing.Size(140, 82);
+            this.listBoxUpdateKraj.TabIndex = 31;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(22, 191);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(25, 13);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "Kraj";
+            // 
             // buttonUpdate
             // 
             this.buttonUpdate.Location = new System.Drawing.Point(55, 311);
@@ -140,6 +158,40 @@
             this.buttonUpdate.Text = "Posodobi";
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
+            // 
+            // listBoxUpdateRazred
+            // 
+            this.listBoxUpdateRazred.FormattingEnabled = true;
+            this.listBoxUpdateRazred.Location = new System.Drawing.Point(28, 96);
+            this.listBoxUpdateRazred.Name = "listBoxUpdateRazred";
+            this.listBoxUpdateRazred.Size = new System.Drawing.Size(140, 82);
+            this.listBoxUpdateRazred.TabIndex = 29;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(22, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(24, 13);
+            this.label6.TabIndex = 27;
+            this.label6.Text = "Ime";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(25, 80);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 13);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "Razred";
+            // 
+            // textBoxUpdateIme
+            // 
+            this.textBoxUpdateIme.Location = new System.Drawing.Point(25, 44);
+            this.textBoxUpdateIme.MaxLength = 60;
+            this.textBoxUpdateIme.Name = "textBoxUpdateIme";
+            this.textBoxUpdateIme.Size = new System.Drawing.Size(143, 20);
+            this.textBoxUpdateIme.TabIndex = 26;
             // 
             // groupBoxInsert
             // 
@@ -227,57 +279,6 @@
             this.labelTitle.Size = new System.Drawing.Size(110, 31);
             this.labelTitle.TabIndex = 14;
             this.labelTitle.Text = "VRSTE";
-            // 
-            // listBoxUpdateKraj
-            // 
-            this.listBoxUpdateKraj.FormattingEnabled = true;
-            this.listBoxUpdateKraj.Location = new System.Drawing.Point(25, 207);
-            this.listBoxUpdateKraj.Name = "listBoxUpdateKraj";
-            this.listBoxUpdateKraj.Size = new System.Drawing.Size(140, 82);
-            this.listBoxUpdateKraj.TabIndex = 31;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 191);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 13);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "Kraj";
-            // 
-            // listBoxUpdateRazred
-            // 
-            this.listBoxUpdateRazred.FormattingEnabled = true;
-            this.listBoxUpdateRazred.Location = new System.Drawing.Point(28, 96);
-            this.listBoxUpdateRazred.Name = "listBoxUpdateRazred";
-            this.listBoxUpdateRazred.Size = new System.Drawing.Size(140, 82);
-            this.listBoxUpdateRazred.TabIndex = 29;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 80);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 13);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "Razred";
-            // 
-            // textBoxUpdateIme
-            // 
-            this.textBoxUpdateIme.Location = new System.Drawing.Point(25, 44);
-            this.textBoxUpdateIme.MaxLength = 60;
-            this.textBoxUpdateIme.Name = "textBoxUpdateIme";
-            this.textBoxUpdateIme.Size = new System.Drawing.Size(143, 20);
-            this.textBoxUpdateIme.TabIndex = 26;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 28);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(24, 13);
-            this.label6.TabIndex = 27;
-            this.label6.Text = "Ime";
             // 
             // Vrste
             // 
