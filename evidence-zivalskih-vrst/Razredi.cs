@@ -34,27 +34,48 @@ namespace evidence_zivalskih_vrst
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            Razred novRazredPodatki = new Razred(textBoxDodajNaziv.Text);
+            if (String.IsNullOrEmpty(textBoxDodajNaziv.Text))
+            {
+                MessageBox.Show("Izberite vse potrebne parametre!");
+            }
+            else
+            {
+                Razred novRazredPodatki = new Razred(textBoxDodajNaziv.Text);
 
-            Database NovRazred = new Database();
-            NovRazred.InsertRazred(novRazredPodatki);
+                Database NovRazred = new Database();
+                NovRazred.InsertRazred(novRazredPodatki);
+            }
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            Razred updateRazredPodatki = new Razred(textBoxUpdateNaziv.Text);
-            int IDlistbox = listBoxRazredi.SelectedIndex + 1;
+            if (String.IsNullOrEmpty(textBoxDodajNaziv.Text) || listBoxRazredi.SelectedIndex <= -1)
+            {
+                MessageBox.Show("Izberite vse potrebne parametre!");
+            }
+            else
+            {
+                Razred updateRazredPodatki = new Razred(textBoxUpdateNaziv.Text);
+                int IDlistbox = listBoxRazredi.SelectedIndex + 1;
 
-            Database Razredi = new Database();
-            Razredi.UpdateRazred(updateRazredPodatki, IDlistbox);
+                Database Razredi = new Database();
+                Razredi.UpdateRazred(updateRazredPodatki, IDlistbox);
+            }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            int IDlistbox = listBoxRazredi.SelectedIndex + 1;
+            if (listBoxRazredi.SelectedIndex <= -1)
+            {
+                MessageBox.Show("Izberite vse potrebne parametre!");
+            }
+            else
+            {
+                int IDlistbox = listBoxRazredi.SelectedIndex + 1;
 
-            Database Razredi = new Database();
-            Razredi.DeleteRazred(IDlistbox);
+                Database Razredi = new Database();
+                Razredi.DeleteRazred(IDlistbox);
+            }
         }
     }
 }
