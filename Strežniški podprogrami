@@ -61,6 +61,19 @@ RETURNS void
 AS 
 $$
 BEGIN
+	DELETE FROM kraj_vrste
+	WHERE id_k = (
+		SELECT id_k
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+            
+        FROM
+            kraji
+    ) sub
+WHERE
+    RowNum = idkraja);
 
 	DELETE FROM kraji 
 	WHERE id_k = (
@@ -291,6 +304,43 @@ WHERE
     RowNum = idvrste)
 	
 	WHERE vrsta_id = (
+		SELECT id_v
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_v) AS RowNum, id_v
+            
+        FROM
+            vrste
+    ) sub
+WHERE
+    RowNum = idvrste);
+END;
+$$
+LANGUAGE 'plpgsql';
+
+DELETE VRSTE
+CREATE OR REPLACE FUNCTION delete_vrste(idvrste integer)
+RETURNS void 
+AS 
+$$
+BEGIN
+	DELETE FROM kraj_vrste
+	WHERE vrsta_id = (
+		SELECT id_v
+FROM
+    (
+        SELECT
+            ROW_NUMBER () OVER (ORDER BY id_v) AS RowNum, id_v
+            
+        FROM
+            vrste
+    ) sub
+WHERE
+    RowNum = idvrste);
+	
+	DELETE FROM razredi 
+	WHERE id_v = (
 		SELECT id_v
 FROM
     (
@@ -536,7 +586,6 @@ FROM
 WHERE
     RowNum = idvrste));
 	END IF;
-
 END;
 $$
 LANGUAGE 'plpgsql';
