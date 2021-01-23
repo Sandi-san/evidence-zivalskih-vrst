@@ -40,10 +40,16 @@ namespace evidence_zivalskih_vrst
                         //int idKraj = listKraji.GetInt32(0);
                         string imeKraj = listKraji.GetString(1);
                         string cifraPosta = listKraji.GetString(2);
-                        //string velikiUporabnik = listKraji.GetString(3);
+                        /*
+                        string velikiUporabnik = listKraji.GetString(3);
+
+                        if (listKraji.GetString(3) != null)
+                        {
+                            listBoxKraji.Items.Add(imeKraj + " (" + cifraPosta + ")" + velikiUporabnik);
+                        }
+                        */
 
                         listBoxKraji.Items.Add(imeKraj + " (" + cifraPosta + ")");
-                        //evidence_zivalskih_vrst.novKraj
                     }
 
                     listKraji.Close();
@@ -296,6 +302,62 @@ namespace evidence_zivalskih_vrst
 
 
                 con.Close();
+            }
+        }
+
+        /*VIEW VRSTE V TEH KRAJIH (FORM 1)*/
+        public void ViewByKraj(Label labelByKraj, int IDlistBoxKraji)
+        {
+            using (con)
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT view_by_kraj('" + IDlistBoxKraji + "');", con);
+                com.ExecuteNonQuery();
+
+                NpgsqlDataReader getNumber = com.ExecuteReader();
+
+                while (getNumber.Read())
+                {
+                    int stevilo = getNumber.GetInt32(0);
+
+                    labelByKraj.Text = stevilo.ToString();
+                }
+
+                getNumber.Close();
+
+                com.Dispose();
+
+
+                con.Dispose();
+            }
+        }
+
+        /*VIEW VRSTE V TEH KRAJIH (FORM 1)*/
+        public void ViewByVrste(Label labelByVrste, int IDlistboxVrsta)
+        {
+            using (con)
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT view_by_vrste('" + IDlistboxVrsta + "');", con);
+                com.ExecuteNonQuery();
+
+                NpgsqlDataReader getNumber = com.ExecuteReader();
+
+                while (getNumber.Read())
+                {
+                    int stevilo = getNumber.GetInt32(0);
+
+                    labelByVrste.Text = stevilo.ToString();
+                }
+
+                getNumber.Close();
+
+                com.Dispose();
+
+
+                con.Dispose();
             }
         }
     }

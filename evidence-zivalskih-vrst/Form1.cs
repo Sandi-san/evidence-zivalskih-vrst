@@ -33,6 +33,9 @@ namespace evidence_zivalskih_vrst
 
             Database ListRazredi = new Database();
             ListRazredi.ViewRazredi(listBoxRazredi);
+
+            Database ListVrste = new Database();
+            ListVrste.ViewVrsta(listBoxVrste);
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -54,6 +57,22 @@ namespace evidence_zivalskih_vrst
             odpriVrste.Show();
 
             this.Hide();
+        }
+
+        private void listBoxKraji_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int IDlistboxKraj = listBoxKraji.SelectedIndex + 1;
+
+            Database Kraji = new Database();
+            Kraji.ViewByKraj(labelByKraj, IDlistboxKraj);
+        }
+
+        private void listBoxVrste_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int IDlistboxVrsta = listBoxVrste.SelectedIndex + 1;
+
+            Database Vrste = new Database();
+            Vrste.ViewByVrste(labelByVrste, IDlistboxVrsta);
         }
     }
 }
