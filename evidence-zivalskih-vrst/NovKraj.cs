@@ -34,27 +34,48 @@ namespace evidence_zivalskih_vrst
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            Kraj novKrajPodatki = new Kraj(textBoxDodajIme.Text, textBoxDodajPosta.Text, textBoxDodajVelUporab.Text);
+            if (String.IsNullOrEmpty(textBoxDodajIme.Text) || String.IsNullOrEmpty(textBoxDodajPosta.Text) || String.IsNullOrEmpty(textBoxDodajVelUporab.Text))
+            {
+                MessageBox.Show("Izberite vse potrebne parametre!");
+            }
+            else
+            {
+                Kraj novKrajPodatki = new Kraj(textBoxDodajIme.Text, textBoxDodajPosta.Text, textBoxDodajVelUporab.Text);
 
-            Database NovKraj = new Database();
-            NovKraj.InsertKraj(novKrajPodatki);
+                Database NovKraj = new Database();
+                NovKraj.InsertKraj(novKrajPodatki);
+            }
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            Kraj updateKrajPodatki = new Kraj(textBoxUpdateIme.Text, textBoxUpdatePosta.Text, textBoxUpdateVelUporab.Text);
-            int IDlistbox = listBoxKraji.SelectedIndex + 1;
+            if (String.IsNullOrEmpty(textBoxDodajIme.Text) || String.IsNullOrEmpty(textBoxDodajPosta.Text) || String.IsNullOrEmpty(textBoxDodajVelUporab.Text) || listBoxKraji.SelectedIndex <= -1)
+            {
+                MessageBox.Show("Izberite vse potrebne parametre!");
+            }
+            else
+            {
+                Kraj updateKrajPodatki = new Kraj(textBoxUpdateIme.Text, textBoxUpdatePosta.Text, textBoxUpdateVelUporab.Text);
+                int IDlistbox = listBoxKraji.SelectedIndex + 1;
 
-            Database Kraji = new Database();
-            Kraji.UpdateKraj(updateKrajPodatki, IDlistbox);
+                Database Kraji = new Database();
+                Kraji.UpdateKraj(updateKrajPodatki, IDlistbox);
+            }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            int IDlistbox = listBoxKraji.SelectedIndex + 1;
+            if (listBoxKraji.SelectedIndex <= -1)
+            {
+                MessageBox.Show("Izberite vse potrebne parametre!");
+            }
+            else
+            {
+                int IDlistbox = listBoxKraji.SelectedIndex + 1;
 
-            Database Kraji = new Database();
-            Kraji.DeleteKraj(IDlistbox);
+                Database Kraji = new Database();
+                Kraji.DeleteKraj(IDlistbox);
+            }
         }
     }
 }
