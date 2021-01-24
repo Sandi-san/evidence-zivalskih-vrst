@@ -64,7 +64,7 @@ namespace evidence_zivalskih_vrst
             int IDlistboxKraj = listBoxKraji.SelectedIndex + 1;
 
             Database Kraji = new Database();
-            Kraji.ViewByKraj(labelByKraj, IDlistboxKraj);
+            Kraji.ViewByKraj(labelByKraj, IDlistboxKraj, chart1);
         }
 
         private void listBoxVrste_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,7 +72,7 @@ namespace evidence_zivalskih_vrst
             int IDlistboxVrsta = listBoxVrste.SelectedIndex + 1;
 
             Database Vrste = new Database();
-            Vrste.ViewByVrste(labelByVrste, IDlistboxVrsta);
+            Vrste.ViewByVrste(labelByVrste, IDlistboxVrsta, chart1);
         }
     }
 }

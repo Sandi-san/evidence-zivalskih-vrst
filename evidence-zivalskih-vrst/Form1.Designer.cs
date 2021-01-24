@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.listBoxKraji = new System.Windows.Forms.ListBox();
             this.buttonKrajForm = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,9 +45,11 @@
             this.labelByKraj = new System.Windows.Forms.Label();
             this.labelByVrste = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBoxKraji.SuspendLayout();
             this.groupBoxRazredi.SuspendLayout();
             this.groupBoxVrste.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxKraji
@@ -145,7 +150,7 @@
             this.groupBoxVrste.Size = new System.Drawing.Size(171, 388);
             this.groupBoxVrste.TabIndex = 17;
             this.groupBoxVrste.TabStop = false;
-            this.groupBoxVrste.Text = "Razredi";
+            this.groupBoxVrste.Text = "Vrste";
             // 
             // listBoxVrste
             // 
@@ -180,7 +185,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label3.Location = new System.Drawing.Point(583, 165);
+            this.label3.Location = new System.Drawing.Point(583, 129);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(173, 90);
             this.label3.TabIndex = 20;
@@ -188,11 +193,28 @@
     "rite vrstice\r\nv Kraji in Vrste seznamih.";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(547, 233);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Število";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(241, 205);
+            this.chart1.TabIndex = 21;
+            this.chart1.Text = "chart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelByVrste);
             this.Controls.Add(this.labelByKraj);
@@ -208,6 +230,7 @@
             this.groupBoxKraji.ResumeLayout(false);
             this.groupBoxRazredi.ResumeLayout(false);
             this.groupBoxVrste.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,6 +251,7 @@
         private System.Windows.Forms.Label labelByKraj;
         private System.Windows.Forms.Label labelByVrste;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 

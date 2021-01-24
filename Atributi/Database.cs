@@ -7,6 +7,7 @@ using Npgsql;
 using evidence_zivalskih_vrst;
 using System.Windows.Forms; //za ListBox in Form1 fore
 using Atributi;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace evidence_zivalskih_vrst
 {
@@ -305,8 +306,8 @@ namespace evidence_zivalskih_vrst
             }
         }
 
-        /*VIEW VRSTE V TEH KRAJIH (FORM 1)*/
-        public void ViewByKraj(Label labelByKraj, int IDlistBoxKraji)
+        /*VIEW KOLIKO VRST V TEM KRAJU (FORM 1)*/
+        public void ViewByKraj(Label labelByKraj, int IDlistBoxKraji, Chart chart1)
         {
             using (con)
             {
@@ -317,11 +318,17 @@ namespace evidence_zivalskih_vrst
 
                 NpgsqlDataReader getNumber = com.ExecuteReader();
 
+                //Pobriše vsebino starega grafa
+                chart1.Series[0].Points.Clear();
+
                 while (getNumber.Read())
                 {
                     int stevilo = getNumber.GetInt32(0);
+                    //string ime = getNumber.GetString(1);
 
                     labelByKraj.Text = stevilo.ToString();
+
+                    chart1.Series["Število"].Points.AddXY("Kraj", stevilo.ToString());
                 }
 
                 getNumber.Close();
@@ -333,8 +340,8 @@ namespace evidence_zivalskih_vrst
             }
         }
 
-        /*VIEW VRSTE V TEH KRAJIH (FORM 1)*/
-        public void ViewByVrste(Label labelByVrste, int IDlistboxVrsta)
+        /*VIEW V KOLIKO KRAJIH TA VRSTA (FORM 1)*/
+        public void ViewByVrste(Label labelByVrste, int IDlistboxVrsta, Chart chart1)
         {
             using (con)
             {
@@ -345,11 +352,17 @@ namespace evidence_zivalskih_vrst
 
                 NpgsqlDataReader getNumber = com.ExecuteReader();
 
+                //Pobriše vsebino starega grafa
+                chart1.Series[0].Points.Clear();
+
                 while (getNumber.Read())
                 {
                     int stevilo = getNumber.GetInt32(0);
+                    //string ime = getNumber.GetString(1);
 
                     labelByVrste.Text = stevilo.ToString();
+
+                    chart1.Series["Število"].Points.AddXY("Vrsta", stevilo.ToString());
                 }
 
                 getNumber.Close();
@@ -362,9 +375,3 @@ namespace evidence_zivalskih_vrst
         }
     }
 }
-
-
-/*
-ItemsDatabase id = new ItemsDatabase();
-                    id.ReadItems(listBox1);
-    */
