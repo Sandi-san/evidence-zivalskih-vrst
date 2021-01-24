@@ -36,6 +36,9 @@ namespace evidence_zivalskih_vrst
 
             Database ListVrste = new Database();
             ListVrste.ViewVrsta(listBoxVrste);
+
+            Database ViewSettings = new Database();
+            ViewSettings.ViewSettings(labelFont, labelBackground);
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)

@@ -38,19 +38,22 @@ namespace evidence_zivalskih_vrst
 
                     while(listKraji.Read())
                     {
-                        //int idKraj = listKraji.GetInt32(0);
-                        string imeKraj = listKraji.GetString(1);
-                        string cifraPosta = listKraji.GetString(2);
-                        /*
-                        string velikiUporabnik = listKraji.GetString(3);
-
-                        if (listKraji.GetString(3) != null)
+                        if (string.IsNullOrEmpty(listKraji[3].ToString()))
                         {
-                            listBoxKraji.Items.Add(imeKraj + " (" + cifraPosta + ")" + velikiUporabnik);
+                            string imeKraj = listKraji.GetString(1);
+                            string cifraPosta = listKraji.GetString(2);
+                            
+                            listBoxKraji.Items.Add(imeKraj + " (" + cifraPosta + ")");
                         }
-                        */
+                        else
+                        {
+                            string imeKraj = listKraji.GetString(1);
+                            string cifraPosta = listKraji.GetString(2);
+                            string velikiUporabnik = listKraji.GetString(3);
 
-                        listBoxKraji.Items.Add(imeKraj + " (" + cifraPosta + ")");
+                            listBoxKraji.Items.Add(imeKraj + " (" + cifraPosta + ")" + " - " + velikiUporabnik);
+
+                        }
                     }
 
                     listKraji.Close();
@@ -366,6 +369,73 @@ namespace evidence_zivalskih_vrst
                 }
 
                 getNumber.Close();
+
+                com.Dispose();
+
+
+                con.Dispose();
+            }
+        }
+
+        /*PRIDOBI SETTINGS*/
+        public void ViewSettings(Label l_font, Label l_background)
+        {
+            using (con)
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM view_settings();", con);
+                com.ExecuteNonQuery();
+
+                NpgsqlDataReader settings = com.ExecuteReader();
+
+                while (settings.Read())
+                {
+                    //Če je v bazi null, bo ustrezne atribute dal na default
+                    //default font = black, default background = white
+                    if (string.IsNullOrEmpty(settings[1].ToString()))
+                    {
+                        if (string.IsNullOrEmpty(settings[2].ToString()))
+                        {
+                            l_font.Text = "black";
+                            l_background.Text = "white";
+                        }
+                        else
+                        {
+                            string s_background = settings.GetString(2);
+
+                            l_font.Text = "black";
+                            l_background.Text = s_background.ToString();
+                        }
+                    }
+                    else if (string.IsNullOrEmpty(settings[2].ToString()))
+                    {
+                        if (string.IsNullOrEmpty(settings[1].ToString()))
+                        {
+                            l_font.Text = "black";
+                            l_background.Text = "white";
+                        }
+                        else
+                        {
+                            string s_font = settings.GetString(1);
+
+                            l_font.Text = s_font.ToString();
+                            l_background.Text = "white";
+                        }
+
+                    }
+                    else
+                    {
+                        //int idVrsta = listVrste.GetInt32(0);
+                        string s_font = settings.GetString(1);
+                        string s_background = settings.GetString(2);
+
+                        l_font.Text = s_font.ToString();
+                        l_background.Text = s_background.ToString();
+                    }
+                }
+
+                settings.Close();
 
                 com.Dispose();
 
