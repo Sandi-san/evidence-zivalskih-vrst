@@ -268,6 +268,8 @@ WHERE
 END;
 $$
 LANGUAGE 'plpgsql';
+CALL:
+SELECT update_vrste('nizaba', 2, 6);
 
 UPDATE SAMO KRAJ_VRSTE
 --!
@@ -318,6 +320,9 @@ WHERE
 END;
 $$
 LANGUAGE 'plpgsql';
+CALL:
+SELECT update_kraj_vrste (2, 6);
+
 
 DELETE VRSTE
 CREATE OR REPLACE FUNCTION delete_vrste(idvrste integer)
@@ -355,7 +360,82 @@ WHERE
 END;
 $$
 LANGUAGE 'plpgsql';
+
+VIEW VRSTE V TEH KRAJIH (FORM 1)
+CREATE OR REPLACE FUNCTION view_by_kraj(idkraja integer)
+RETURNS TABLE (id_kv bigint) AS 
+$$
+BEGIN
+	RETURN QUERY (SELECT COUNT(kv.*)
+		FROM kraji k INNER JOIN kraj_vrsta kv ON k.id_k=kv.kraj_id 
+		INNER JOIN vrste v ON v.id_v=kv.vrsta_id
+		WHERE k.id_k=(
+				SELECT id_k
+		FROM
+			(
+				SELECT
+					ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+
+				FROM
+					kraji
+			) sub
+		WHERE
+			RowNum = idkraja));
+END;
+$$
+LANGUAGE 'plpgsql';
+VIEW KRAJI Z TEM VRSTAM (FORM 1)
+CREATE OR REPLACE FUNCTION view_by_kraj(idkraja integer)
+RETURNS TABLE (id_kv bigint) AS 
+$$
+BEGIN
+	RETURN QUERY (SELECT COUNT(kv.*)
+		FROM kraji k INNER JOIN kraj_vrsta kv ON k.id_k=kv.kraj_id 
+		INNER JOIN vrste v ON v.id_v=kv.vrsta_id
+		WHERE k.id_k=(
+				SELECT id_k
+		FROM
+			(
+				SELECT
+					ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+
+				FROM
+					kraji
+			) sub
+		WHERE
+			RowNum = idkraja));
+END;
+$$
+LANGUAGE 'plpgsql';
+
 -------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TRIGGER posodobi_povp_stevilo
+AFTER INSERT OR UPDATE OR DELETE ON vrste
+FOR EACH ROW EXECUTE PROCEDURE povp_stevila_kv();
+
+CREATE OR REPLACE FUNCTION povp_stevila_kv()
+RETURNS TRIGGER AS $$
+BEGIN
+	IF (tg_op = 'UPDATE') THEN
+		UPDATE kraj_vrsta SET povp_stevilo=povp_stevilo-1
+		WHERE vrsta_id=OLD.id_v;
+		UPDATE kraj_vrsta SET povp_stevilo=povp_stevilo+1
+		WHERE vrsta_id=NEW.id_v;
+	END IF;
+		IF (tg_op = 'DELETE') THEN
+		UPDATE kraj_vrsta SET povp_stevilo=povp_stevilo-1
+		WHERE vrsta_id=OLD.id_v;
+	END IF;
+	IF (tg_op = 'INSERT') THEN
+		UPDATE kraj_vrsta SET povp_stevilo=povp_stevilo+1
+		WHERE vrsta_id=NEW.id_v;
+	END IF;
+
+RETURN NULL;
+END;
+$$ 
+LANGUAGE 'plpgsql';
+
 INSERT VRSTE IN KRAJ_VRSTE
 --!
 Funkcija prvo vnese novo vrsto, nato pa doda novo vrsto v tabelo kraj_vrste, kjer vnese novo povprečno število (1, saj je bil 1 vnos), nato doda še id_kraja in id NOVO ustvarjene vrste
