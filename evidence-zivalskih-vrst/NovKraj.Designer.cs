@@ -51,6 +51,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.buttonDatabaseUpdate = new System.Windows.Forms.Button();
             this.labelInfo = new System.Windows.Forms.Label();
+            this.labelBackground = new System.Windows.Forms.Label();
+            this.labelFont = new System.Windows.Forms.Label();
             this.groupBoxInsert.SuspendLayout();
             this.groupBoxUpdate.SuspendLayout();
             this.groupBoxDelete.SuspendLayout();
@@ -279,11 +281,33 @@
     "ljati.";
             this.labelInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // labelBackground
+            // 
+            this.labelBackground.AutoSize = true;
+            this.labelBackground.Location = new System.Drawing.Point(476, 414);
+            this.labelBackground.Name = "labelBackground";
+            this.labelBackground.Size = new System.Drawing.Size(72, 13);
+            this.labelBackground.TabIndex = 25;
+            this.labelBackground.Text = "l_background";
+            this.labelBackground.Visible = false;
+            // 
+            // labelFont
+            // 
+            this.labelFont.AutoSize = true;
+            this.labelFont.Location = new System.Drawing.Point(437, 414);
+            this.labelFont.Name = "labelFont";
+            this.labelFont.Size = new System.Drawing.Size(33, 13);
+            this.labelFont.TabIndex = 24;
+            this.labelFont.Text = "l_font";
+            this.labelFont.Visible = false;
+            // 
             // NovKraj
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelBackground);
+            this.Controls.Add(this.labelFont);
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.buttonDatabaseUpdate);
             this.Controls.Add(this.label10);
@@ -331,5 +355,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button buttonDatabaseUpdate;
         private System.Windows.Forms.Label labelInfo;
+        private System.Windows.Forms.Label labelBackground;
+        private System.Windows.Forms.Label labelFont;
     }
 }

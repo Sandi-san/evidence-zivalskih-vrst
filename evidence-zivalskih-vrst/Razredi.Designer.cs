@@ -43,6 +43,8 @@
             this.textBoxDodajNaziv = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
+            this.labelBackground = new System.Windows.Forms.Label();
+            this.labelFont = new System.Windows.Forms.Label();
             this.groupBoxDelete.SuspendLayout();
             this.groupBoxUpdate.SuspendLayout();
             this.groupBoxInsert.SuspendLayout();
@@ -195,11 +197,33 @@
             this.labelTitle.TabIndex = 14;
             this.labelTitle.Text = "RAZREDI";
             // 
+            // labelBackground
+            // 
+            this.labelBackground.AutoSize = true;
+            this.labelBackground.Location = new System.Drawing.Point(331, 259);
+            this.labelBackground.Name = "labelBackground";
+            this.labelBackground.Size = new System.Drawing.Size(72, 13);
+            this.labelBackground.TabIndex = 27;
+            this.labelBackground.Text = "l_background";
+            this.labelBackground.Visible = false;
+            // 
+            // labelFont
+            // 
+            this.labelFont.AutoSize = true;
+            this.labelFont.Location = new System.Drawing.Point(292, 259);
+            this.labelFont.Name = "labelFont";
+            this.labelFont.Size = new System.Drawing.Size(33, 13);
+            this.labelFont.TabIndex = 26;
+            this.labelFont.Text = "l_font";
+            this.labelFont.Visible = false;
+            // 
             // Razredi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 305);
+            this.Controls.Add(this.labelBackground);
+            this.Controls.Add(this.labelFont);
             this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.buttonDatabaseUpdate);
             this.Controls.Add(this.label10);
@@ -239,5 +263,7 @@
         private System.Windows.Forms.TextBox textBoxDodajNaziv;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Label labelBackground;
+        private System.Windows.Forms.Label labelFont;
     }
 }

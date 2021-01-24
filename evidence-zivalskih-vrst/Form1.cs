@@ -39,7 +39,6 @@ namespace evidence_zivalskih_vrst
 
             Database ViewSettings = new Database();
             ViewSettings.ViewSettings(labelFont, labelBackground);
-
             checkFonts();
         }
 

@@ -12,8 +12,6 @@ namespace evidence_zivalskih_vrst
 {
     public partial class Barve : Form
     {
-        public static Form1 Form;
-
         public Barve()
         {
             InitializeComponent();
