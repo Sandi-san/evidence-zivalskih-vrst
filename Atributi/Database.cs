@@ -443,5 +443,23 @@ namespace evidence_zivalskih_vrst
                 con.Dispose();
             }
         }
+        /*Spremeni barve (doda nove vrednosti v tabelo)*/
+        public void UpdateSettings(string font, string background)
+        {
+            using (con) //connection uporabljen le v življenjski dobi item-a
+            {
+                con.Open();
+
+                NpgsqlCommand com = new NpgsqlCommand("SELECT update_settings('" + font + "', '" + background + "');", con);
+
+                com.ExecuteNonQuery();
+
+                com.Dispose();
+
+
+                con.Close();
+            }
+        }
+        
     }
 }

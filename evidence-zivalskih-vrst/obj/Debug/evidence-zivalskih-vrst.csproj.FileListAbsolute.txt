@@ -37,3 +37,4 @@ C:\Users\Nickk\source\repos\evidence-zivalskih-vrst\evidence-zivalskih-vrst\obj\
 C:\Users\Nickk\source\repos\evidence-zivalskih-vrst\evidence-zivalskih-vrst\obj\Debug\evidence_zivalskih_vrst.NovKraj.resources
 C:\Users\Nickk\source\repos\evidence-zivalskih-vrst\evidence-zivalskih-vrst\obj\Debug\evidence_zivalskih_vrst.Razredi.resources
 C:\Users\Nickk\source\repos\evidence-zivalskih-vrst\evidence-zivalskih-vrst\obj\Debug\evidence_zivalskih_vrst.Vrste.resources
+C:\Users\Nickk\source\repos\evidence-zivalskih-vrst\evidence-zivalskih-vrst\obj\Debug\evidence_zivalskih_vrst.Barve.resources

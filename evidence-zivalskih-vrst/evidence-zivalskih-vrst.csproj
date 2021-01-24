@@ -81,6 +81,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Barve.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Barve.Designer.cs">
+      <DependentUpon>Barve.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     <Compile Include="Vrste.Designer.cs">
       <DependentUpon>Vrste.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Barve.resx">
+      <DependentUpon>Barve.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

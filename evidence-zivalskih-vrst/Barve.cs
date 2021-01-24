@@ -7,35 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Atributi; //referenca z Atributi
 
 namespace evidence_zivalskih_vrst
 {
-    public partial class Form1 : Form
+    public partial class Barve : Form
     {
-        public Form1()
+        public static Form1 Form;
+
+        public Barve()
         {
             InitializeComponent();
         }
 
-        private void buttonKrajForm_Click(object sender, EventArgs e)
+        private void Barve_FormClosed(object sender, FormClosedEventArgs e)
         {
-            NovKraj odpriNovKraj = new NovKraj();
-            odpriNovKraj.Show();
+            Form1 form1 = new Form1();
+            form1.Show();
 
             this.Hide();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void buttonChangeColor_Click(object sender, EventArgs e)
         {
-            Database ListKraji = new Database();
-            ListKraji.ViewKraji(listBoxKraji);
-
-            Database ListRazredi = new Database();
-            ListRazredi.ViewRazredi(listBoxRazredi);
-
-            Database ListVrste = new Database();
-            ListVrste.ViewVrsta(listBoxVrste);
+            Database Barve = new Database();
+            Barve.UpdateSettings(textBoxBackground.Text, textBoxFont.Text);
 
             Database ViewSettings = new Database();
             ViewSettings.ViewSettings(labelFont, labelBackground);
@@ -43,49 +38,12 @@ namespace evidence_zivalskih_vrst
             checkFonts();
         }
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        private void Barve_Load(object sender, EventArgs e)
         {
-            Application.Exit();
-        }
+            Database ViewSettings = new Database();
+            ViewSettings.ViewSettings(labelFont, labelBackground);
 
-        private void buttonRazredForm_Click(object sender, EventArgs e)
-        {
-            Razredi odpriRazrede = new Razredi();
-            odpriRazrede.Show();
-
-            this.Hide();
-        }
-
-        private void buttonVrsteForm_Click(object sender, EventArgs e)
-        {
-            Vrste odpriVrste = new Vrste();
-            odpriVrste.Show();
-
-            this.Hide();
-        }
-
-        private void listBoxKraji_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int IDlistboxKraj = listBoxKraji.SelectedIndex + 1;
-
-            Database Kraji = new Database();
-            Kraji.ViewByKraj(labelByKraj, IDlistboxKraj, chart1);
-        }
-
-        private void listBoxVrste_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int IDlistboxVrsta = listBoxVrste.SelectedIndex + 1;
-
-            Database Vrste = new Database();
-            Vrste.ViewByVrste(labelByVrste, IDlistboxVrsta, chart1);
-        }
-
-        private void buttonSettings_Click(object sender, EventArgs e)
-        {
-            Barve odpriBarve = new Barve();
-            odpriBarve.Show();
-
-            this.Hide();
+            checkFonts();
         }
 
         public void checkFonts()
@@ -168,7 +126,7 @@ namespace evidence_zivalskih_vrst
                     this.BackColor = Color.Pink;
                     break;
             }
-            switch(labelBackground.Text)
+            switch (labelBackground.Text)
             {
                 case "white":
                     this.ForeColor = Color.White;
