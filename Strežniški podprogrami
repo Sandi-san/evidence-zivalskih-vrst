@@ -361,7 +361,7 @@ END;
 $$
 LANGUAGE 'plpgsql';
 
-VIEW VRSTE V TEH KRAJIH (FORM 1)
+VIEW KOLIKO VRST V TEM KRAJU (FORM 1)
 CREATE OR REPLACE FUNCTION view_by_kraj(idkraja integer)
 RETURNS TABLE (id_kv bigint) AS 
 $$
@@ -384,31 +384,119 @@ BEGIN
 END;
 $$
 LANGUAGE 'plpgsql';
-VIEW KRAJI Z TEM VRSTAM (FORM 1)
-CREATE OR REPLACE FUNCTION view_by_kraj(idkraja integer)
+VIEW V KOLIKO KRAJIH TA VRSTA (FORM 1)
+CREATE OR REPLACE FUNCTION view_by_vrste(idvrste integer)
 RETURNS TABLE (id_kv bigint) AS 
 $$
 BEGIN
 	RETURN QUERY (SELECT COUNT(kv.*)
 		FROM kraji k INNER JOIN kraj_vrsta kv ON k.id_k=kv.kraj_id 
 		INNER JOIN vrste v ON v.id_v=kv.vrsta_id
-		WHERE k.id_k=(
-				SELECT id_k
+		WHERE v.id_v=(
+				SELECT id_v
 		FROM
 			(
 				SELECT
-					ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+					ROW_NUMBER () OVER (ORDER BY id_v) AS RowNum, id_v
 
 				FROM
-					kraji
+					vrste
 			) sub
 		WHERE
-			RowNum = idkraja));
+			RowNum = idvrste));
 END;
 $$
 LANGUAGE 'plpgsql';
 
+TRIGGER INSERT V LOG TABELO
+CREATE OR REPLACE FUNCTION log_vrste_podatki()
+RETURNS TRIGGER AS $$
+BEGIN
+	INSERT INTO log_vrste(log_id_v, log_ime, log_razred_id, datum_cas)
+	VALUES (NEW.id_v, NEW.ime, NEW.razred_id, NOW());
+RETURN NULL;
+END;
+$$ LANGUAGE 'plpgsql';
+UPORABA TRIGGER
+CREATE TRIGGER insert_log_vrste
+AFTER INSERT OR UPDATE ON vrste
+FOR EACH ROW EXECUTE PROCEDURE log_vrste_podatki();
+
+VIEW SETTINGS
+CREATE OR REPLACE FUNCTION view_settings()
+RETURNS TABLE (id_s integer, font character varying(40), background character varying(40))
+AS 
+$$
+BEGIN
+	RETURN QUERY (SELECT * FROM settings ORDER BY id_s DESC LIMIT 1);
+END;
+$$
+LANGUAGE 'plpgsql';
+
+UPDATE SETTINGS
+CREATE OR REPLACE FUNCTION update_settings(novfont character varying(40), novbackground character varying(40))
+RETURNS void 
+AS 
+$$
+BEGIN
+	UPDATE settings
+	SET font=novfont, background=novbackground;
+END;
+$$
+LANGUAGE 'plpgsql';
 -------------------------------------------------------------------------------------------------------------------------------------------
+VIEW KOLIKO VRST V TEM KRAJU (FORM 1)
+SQL noče vrnat “record” v aplikaciji. Verjetna težava je izpis attributov iz dveh različnih tabel
+CREATE OR REPLACE FUNCTION view_by_kraj(idkraja integer)
+RETURNS TABLE (id_kv bigint, ime character varying(60)) AS 
+$$
+BEGIN
+	RETURN QUERY (SELECT COUNT(kv.*), k.ime
+		FROM kraji k INNER JOIN kraj_vrsta kv ON k.id_k=kv.kraj_id 
+		INNER JOIN vrste v ON v.id_v=kv.vrsta_id
+		WHERE k.id_k=(
+				SELECT id_k
+		FROM
+			(
+				SELECT
+					ROW_NUMBER () OVER (ORDER BY id_k) AS RowNum, id_k
+
+				FROM
+					kraji
+			) sub
+		WHERE
+			RowNum = idkraja)
+			GROUP BY k.ime);
+END;
+$$
+LANGUAGE 'plpgsql';
+VIEW V KOLIKO KRAJIH TA VRSTA (FORM 1)
+SQL noče vrnat “record” v aplikaciji. Verjetna težava je izpis attributov iz dveh različnih tabel
+CREATE OR REPLACE FUNCTION view_by_vrste(idvrste integer)
+RETURNS TABLE (id_kv bigint, ime character varying(120)) AS 
+$$
+BEGIN
+	RETURN QUERY (SELECT COUNT(kv.*), v.ime
+		FROM kraji k INNER JOIN kraj_vrsta kv ON k.id_k=kv.kraj_id 
+		INNER JOIN vrste v ON v.id_v=kv.vrsta_id
+		WHERE v.id_v=(
+				SELECT id_v
+		FROM
+			(
+				SELECT
+					ROW_NUMBER () OVER (ORDER BY id_v) AS RowNum, id_v
+
+				FROM
+					vrste
+			) sub
+		WHERE
+			RowNum = idvrste)
+			GROUP BY v.ime);
+END;
+$$
+LANGUAGE 'plpgsql';
+
+
 CREATE TRIGGER posodobi_povp_stevilo
 AFTER INSERT OR UPDATE OR DELETE ON vrste
 FOR EACH ROW EXECUTE PROCEDURE povp_stevila_kv();
