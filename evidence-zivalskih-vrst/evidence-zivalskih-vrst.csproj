@@ -130,6 +130,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Razredi.resx">
       <DependentUpon>Razredi.cs</DependentUpon>
@@ -156,6 +157,9 @@
       <Project>{59ba55d0-d4f9-45b5-9b61-9417f4d35745}</Project>
       <Name>Atributi</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mainKoala.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

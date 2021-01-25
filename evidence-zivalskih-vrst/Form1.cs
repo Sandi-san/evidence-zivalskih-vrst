@@ -28,6 +28,7 @@ namespace evidence_zivalskih_vrst
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            chart1.Visible = false;
             Database ListKraji = new Database();
             ListKraji.ViewKraji(listBoxKraji);
 
@@ -65,6 +66,7 @@ namespace evidence_zivalskih_vrst
 
         private void listBoxKraji_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chart1.Visible = true;
             int IDlistboxKraj = listBoxKraji.SelectedIndex + 1;
 
             Database Kraji = new Database();
@@ -73,6 +75,7 @@ namespace evidence_zivalskih_vrst
 
         private void listBoxVrste_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chart1.Visible = true;
             int IDlistboxVrsta = listBoxVrste.SelectedIndex + 1;
 
             Database Vrste = new Database();

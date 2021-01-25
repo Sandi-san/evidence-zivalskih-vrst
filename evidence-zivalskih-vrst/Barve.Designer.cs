@@ -36,18 +36,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.labelBackground = new System.Windows.Forms.Label();
             this.labelFont = new System.Windows.Forms.Label();
+            this.labelTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxBackground
             // 
-            this.textBoxBackground.Location = new System.Drawing.Point(102, 74);
+            this.textBoxBackground.Location = new System.Drawing.Point(103, 117);
             this.textBoxBackground.Name = "textBoxBackground";
             this.textBoxBackground.Size = new System.Drawing.Size(100, 20);
             this.textBoxBackground.TabIndex = 0;
             // 
             // textBoxFont
             // 
-            this.textBoxFont.Location = new System.Drawing.Point(102, 35);
+            this.textBoxFont.Location = new System.Drawing.Point(103, 78);
             this.textBoxFont.Name = "textBoxFont";
             this.textBoxFont.Size = new System.Drawing.Size(100, 20);
             this.textBoxFont.TabIndex = 1;
@@ -55,7 +56,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 35);
+            this.label1.Location = new System.Drawing.Point(25, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 2;
@@ -64,7 +65,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 77);
+            this.label2.Location = new System.Drawing.Point(25, 120);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 3;
@@ -72,7 +73,7 @@
             // 
             // buttonChangeColor
             // 
-            this.buttonChangeColor.Location = new System.Drawing.Point(74, 125);
+            this.buttonChangeColor.Location = new System.Drawing.Point(75, 168);
             this.buttonChangeColor.Name = "buttonChangeColor";
             this.buttonChangeColor.Size = new System.Drawing.Size(75, 23);
             this.buttonChangeColor.TabIndex = 4;
@@ -84,7 +85,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(227, 31);
+            this.label3.Location = new System.Drawing.Point(228, 74);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(142, 72);
             this.label3.TabIndex = 5;
@@ -93,7 +94,7 @@
             // labelBackground
             // 
             this.labelBackground.AutoSize = true;
-            this.labelBackground.Location = new System.Drawing.Point(250, 135);
+            this.labelBackground.Location = new System.Drawing.Point(251, 178);
             this.labelBackground.Name = "labelBackground";
             this.labelBackground.Size = new System.Drawing.Size(72, 13);
             this.labelBackground.TabIndex = 25;
@@ -103,18 +104,29 @@
             // labelFont
             // 
             this.labelFont.AutoSize = true;
-            this.labelFont.Location = new System.Drawing.Point(211, 135);
+            this.labelFont.Location = new System.Drawing.Point(212, 178);
             this.labelFont.Name = "labelFont";
             this.labelFont.Size = new System.Drawing.Size(33, 13);
             this.labelFont.TabIndex = 24;
             this.labelFont.Text = "l_font";
             this.labelFont.Visible = false;
             // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelTitle.Location = new System.Drawing.Point(135, 23);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(111, 31);
+            this.labelTitle.TabIndex = 26;
+            this.labelTitle.Text = "BARVE";
+            // 
             // Barve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 167);
+            this.ClientSize = new System.Drawing.Size(382, 211);
+            this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.labelBackground);
             this.Controls.Add(this.labelFont);
             this.Controls.Add(this.label3);
@@ -142,5 +154,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelBackground;
         private System.Windows.Forms.Label labelFont;
+        private System.Windows.Forms.Label labelTitle;
     }
 }
