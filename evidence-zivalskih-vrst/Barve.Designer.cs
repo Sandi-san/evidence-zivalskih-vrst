@@ -135,6 +135,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxFont);
             this.Controls.Add(this.textBoxBackground);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Barve";
             this.Text = "Barve";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Barve_FormClosed);

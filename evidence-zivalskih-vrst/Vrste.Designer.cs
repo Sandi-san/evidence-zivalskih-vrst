@@ -316,6 +316,7 @@
             this.Controls.Add(this.groupBoxUpdate);
             this.Controls.Add(this.groupBoxInsert);
             this.Controls.Add(this.labelTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Vrste";
             this.Text = "Vrste";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Vrste_FormClosed);
