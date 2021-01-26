@@ -96,6 +96,7 @@
             this.listBoxVrste.Name = "listBoxVrste";
             this.listBoxVrste.Size = new System.Drawing.Size(202, 277);
             this.listBoxVrste.TabIndex = 18;
+            this.listBoxVrste.SelectedIndexChanged += new System.EventHandler(this.listBoxVrste_SelectedIndexChanged);
             // 
             // groupBoxDelete
             // 

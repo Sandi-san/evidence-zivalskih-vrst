@@ -292,5 +292,14 @@ namespace evidence_zivalskih_vrst
                     break;
             }
         }
+
+        private void listBoxVrste_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string splitdata = listBoxVrste.Items[listBoxVrste.SelectedIndex].ToString();
+            string[] space = { " - " };
+            string[] data = splitdata.Split(space, StringSplitOptions.RemoveEmptyEntries);
+
+            textBoxUpdateIme.Text = data[0];
+        }
     }
 }

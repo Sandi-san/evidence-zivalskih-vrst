@@ -88,6 +88,7 @@
             this.listBoxRazredi.Name = "listBoxRazredi";
             this.listBoxRazredi.Size = new System.Drawing.Size(202, 160);
             this.listBoxRazredi.TabIndex = 18;
+            this.listBoxRazredi.SelectedIndexChanged += new System.EventHandler(this.listBoxRazredi_SelectedIndexChanged);
             // 
             // groupBoxDelete
             // 

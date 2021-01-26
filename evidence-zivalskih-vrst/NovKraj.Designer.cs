@@ -249,6 +249,7 @@
             this.listBoxKraji.Name = "listBoxKraji";
             this.listBoxKraji.Size = new System.Drawing.Size(202, 277);
             this.listBoxKraji.TabIndex = 10;
+            this.listBoxKraji.SelectedIndexChanged += new System.EventHandler(this.listBoxKraji_SelectedIndexChanged);
             // 
             // label10
             // 

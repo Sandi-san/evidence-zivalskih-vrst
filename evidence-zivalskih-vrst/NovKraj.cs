@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Atributi; //referenca z Atributi
+using System.Text.RegularExpressions;
 
 namespace evidence_zivalskih_vrst
 {
@@ -38,7 +39,7 @@ namespace evidence_zivalskih_vrst
 
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBoxDodajIme.Text) || String.IsNullOrEmpty(textBoxDodajPosta.Text) || String.IsNullOrEmpty(textBoxDodajVelUporab.Text))
+            if (String.IsNullOrEmpty(textBoxDodajIme.Text) || String.IsNullOrEmpty(textBoxDodajPosta.Text))
             {
                 MessageBox.Show("Izberite vse potrebne parametre!");
             }
@@ -53,7 +54,7 @@ namespace evidence_zivalskih_vrst
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(textBoxDodajIme.Text) || String.IsNullOrEmpty(textBoxDodajPosta.Text) || String.IsNullOrEmpty(textBoxDodajVelUporab.Text) || listBoxKraji.SelectedIndex <= -1)
+            if (String.IsNullOrEmpty(textBoxUpdateIme.Text) || String.IsNullOrEmpty(textBoxUpdatePosta.Text) || listBoxKraji.SelectedIndex <= -1)
             {
                 MessageBox.Show("Izberite vse potrebne parametre!");
             }
@@ -240,6 +241,16 @@ namespace evidence_zivalskih_vrst
                     this.ForeColor = Color.Pink;
                     break;
             }
+        }
+
+        private void listBoxKraji_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string splitdata = listBoxKraji.Items[listBoxKraji.SelectedIndex].ToString();
+            string[] space = { " - " };
+            string[] data = splitdata.Split(space, StringSplitOptions.RemoveEmptyEntries);
+
+            textBoxUpdateIme.Text = data[0];
+            textBoxUpdatePosta.Text = data[1];
         }
     }
 }
