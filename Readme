@@ -1,1 +1,31 @@
+OPIS
+Aplikacija gre za ogled živalskih vrst v Sloveniji. Vsaka vrsta pripada kraju v Sloveniji ter določenemu razredu. 
+Dodajamo lahko nove razrede, vrste in tudi kraje, jih posodabljamo ter tudi brišemo.
 
+APLIKACIJA
+Glavna stran
+Na glavnem zavihku lahko gledamo vse entitete. Če izberemo kraj lahko vidimo koliko živalskih vrst je v tistem kraju in, če izberemo vrsto lahko vidimo v 
+kolikšnih vrstah je. Rezultati so izpisani numerično kot tudi na grafu. Poleg imamo na tej strani še povezavo do zavihka, kjer lahko nastavljamo 
+barvo pisave in ozadja aplikacije.
+
+Barve
+Na glavni strani imamo tudi povezavo do zavihkov za upravljanje vseh entitet. 
+Vsi zavihki so si podobni ter vsebujejo vpis novega elementa skozi textbox-e, posodabljanje preko textbox-ov za izbran element ter brisanje določenega elementa.
+
+Kraji
+Pri zavihku za kraje, lahko vnašamo naziv kraja, poštno številko ter morebitna podjetja oz. t.i. velike uporabnike.
+Posodabljanje deluje na enak način, vendar moramo poleg izbrati še element, prikazan v seznamu, katerega želimo upravljati. 
+Za brisanje določenega element, izberemo le tega v seznamu, in potrdimo izbris.
+
+Razredi
+Pri zavihku za razrede, lahko vnašamo le ime razreda. Posodabljamo ga z vnosom novega imena ter izbranega elementa, katerega upravljamo. 
+Pri brisanju je potrebna le izbira elementa v seznamu ter pritisnemo gumb.
+
+Vrste 
+Zadnji zavihek je za upravljanje vrst. Vrsti lahko določimo ime, kraj v kateremu se nahaja ter razred kateremu pripada. 
+Posodabljamo z nastavljanjem novih vrednosti ter izbiranje elementa za upravljanje. 
+Za brisanje ponovno izberemo le željen element ter ga preko gumba zbrišemo.
+
+ZGLED BAZE
+Model ima tabele kraji, vrste ter razredi. Razred ima le ime, kraji pa naziv, številko pošte ter velike uporabnike.
+Vrste vsebujejo id razreda ter imajo ime. Med vrstami in kraji je relacija mnogo-mnogo, z vmesno entiteto, ki vsebuje id-ja kraja in vrste.
