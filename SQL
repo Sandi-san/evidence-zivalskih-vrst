@@ -82,9 +82,9 @@ RETURNS void
 AS 
 $$
 BEGIN
-	DELETE FROM kraj_vrste
-	WHERE id_k = (
-		SELECT id_k
+	DELETE FROM kraj_vrsta
+	WHERE kraj_id = (
+		SELECT kraj_id
 FROM
     (
         SELECT
