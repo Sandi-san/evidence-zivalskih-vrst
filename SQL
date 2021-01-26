@@ -1,6 +1,27 @@
 UPB mini project funkcije in prožilci
 
-ROW_NUMBER pri UPDATE in DELETE – če se zbriše en row, bo v listboxu drugačno število elementov kot id v bazi. Zato row_number primerja ID elementa, z vrstico row-a ter izbere ustreznega. Isto velja za tuje ključe pri VRSTAH
+Veliko podprogramov ima podobne funkcije z različnimi parametri:
+view_kraji() – vrne vse podatke o krajih
+insert_kraji('test', 'test', NULL) – vnese nov kraj z podatki naziva, pošte ter velikega uporabnika, ki je lahko null
+update_kraji('test', 'test', NULL, 555) – posodobi obstoječ kraj z podatki naziva, pošte, velikega uporabnika in ID kraja katerega posodablja
+delete_kraji(554) – zbriše kraj z določenim ID-jem
+view_razredi() – vrne vse podatke o razredih
+insert_razredi('test') – vnese nov kraj z podatku imena
+update_razredi('test', 5) – posodobi obstoječ kraj z podatku imena in ID razreda katerega posodablja
+delete_razredi(5) – zbriše razred z določenim ID-jem
+view_vrste() – vrne vse podatke o vrstah
+insert_vrste('test', 4, 20) – vnese novo vrsto z podatki imena, ID razreda (tuji ključ) in ID vrste (tuji ključ). 
+Poleg, še ta funkcija tudi vnese podatke v tabelo kraj_vrsta, kjer je mnogo-mnogo relacija med vrstam in krajem
+update_vrste('nizaba', 2, 6) – posodobi obstoječo vrsto z podatki imena novega ID-ja in razreda in ID vrste katero posodablja
+update_kraj_vrste (2, 6) – kliče se po klicu update_vrste ter posodobi kraj_vrsta glede na nov ID kraja in posodobljene vrste
+delete_vrste(4) – zbriše vrsto z določenim ID-jem
+view_by_kraj(553) – glede na ID kraja, vrne število koliko vrst je v tem kraju
+view_by_vrste(3) – glede na ID vrste, vrne število koliko krajev ima to vrsto
+log_vrste_podatki() – je trigger, ki ob insert ali update nad tabelo vrste, vodi evidenco vseh podatkov v tabeli log_vrste
+view_settings() – vrne podatke o barvi pisave in ozadja v tabeli settings. Glede na podatke, se spremeni barva pisave in ozadja v aplikaciji.
+update_settings(‘red’, ‘blue’) – spremeni vrednost barv pisave in ozadja v tabeli settings, takoj po tem se zopet kliče funkcija view_settings
+
+KODA PODPROGRAMOV
 
 VIEW KRAJI
 CREATE OR REPLACE FUNCTION view_kraji()
@@ -61,9 +82,9 @@ RETURNS void
 AS 
 $$
 BEGIN
-	DELETE FROM kraj_vrste
-	WHERE id_k = (
-		SELECT id_k
+	DELETE FROM kraj_vrsta
+	WHERE kraj_id = (
+		SELECT kraj_id
 FROM
     (
         SELECT
@@ -190,7 +211,8 @@ SELECT * FROM view_vrste();
 
 INSERT VRSTE IN KRAJ_VRSTE
 --!
-Funkcija prvo vnese novo vrsto, nato pa doda novo vrsto v tabelo kraj_vrste, kjer vnese novo povprečno število (1, saj je bil 1 vnos), nato doda še id_kraja in id NOVO ustvarjene vrste
+Funkcija prvo vnese novo vrsto, nato pa doda novo vrsto v tabelo kraj_vrste, kjer vnese novo povprečno število (1, saj je bil 1 vnos), 
+nato doda še id_kraja in id NOVO ustvarjene vrste
 !-->
 CREATE OR REPLACE FUNCTION insert_vrste(vime character varying(120), idrazreda integer, idkraja integer)
 RETURNS void 
@@ -444,7 +466,13 @@ BEGIN
 END;
 $$
 LANGUAGE 'plpgsql';
+
+INFO
+ROW_NUMBER pri UPDATE in DELETE – če se zbriše en row, bo v listboxu drugačno število elementov kot id v bazi. 
+Zato row_number primerja ID elementa, z vrstico row-a ter izbere ustreznega. Isto velja za tuje ključe pri VRSTAH
 -------------------------------------------------------------------------------------------------------------------------------------------
+ZASTARELE FUNKCIJE
+
 VIEW KOLIKO VRST V TEM KRAJU (FORM 1)
 SQL noče vrnat “record” v aplikaciji. Verjetna težava je izpis attributov iz dveh različnih tabel
 CREATE OR REPLACE FUNCTION view_by_kraj(idkraja integer)
