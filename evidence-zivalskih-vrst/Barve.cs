@@ -123,6 +123,9 @@ namespace evidence_zivalskih_vrst
                 case "pink":
                     this.BackColor = Color.Pink;
                     break;
+                default:
+                    this.BackColor = Color.White;
+                    break;
             }
             switch (labelBackground.Text)
             {
@@ -200,6 +203,9 @@ namespace evidence_zivalskih_vrst
                     break;
                 case "pink":
                     this.ForeColor = Color.Pink;
+                    break;
+                default:
+                    this.ForeColor = Color.Black;
                     break;
             }
         }

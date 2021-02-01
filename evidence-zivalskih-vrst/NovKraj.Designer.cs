@@ -154,7 +154,7 @@
             this.groupBoxUpdate.Controls.Add(this.textBoxUpdateIme);
             this.groupBoxUpdate.Controls.Add(this.label6);
             this.groupBoxUpdate.Controls.Add(this.textBoxUpdatePosta);
-            this.groupBoxUpdate.Location = new System.Drawing.Point(222, 81);
+            this.groupBoxUpdate.Location = new System.Drawing.Point(211, 81);
             this.groupBoxUpdate.Name = "groupBoxUpdate";
             this.groupBoxUpdate.Size = new System.Drawing.Size(190, 326);
             this.groupBoxUpdate.TabIndex = 9;
@@ -225,7 +225,7 @@
             // groupBoxDelete
             // 
             this.groupBoxDelete.Controls.Add(this.buttonDelete);
-            this.groupBoxDelete.Location = new System.Drawing.Point(428, 81);
+            this.groupBoxDelete.Location = new System.Drawing.Point(411, 81);
             this.groupBoxDelete.Name = "groupBoxDelete";
             this.groupBoxDelete.Size = new System.Drawing.Size(139, 83);
             this.groupBoxDelete.TabIndex = 9;
@@ -245,16 +245,16 @@
             // listBoxKraji
             // 
             this.listBoxKraji.FormattingEnabled = true;
-            this.listBoxKraji.Location = new System.Drawing.Point(587, 87);
+            this.listBoxKraji.Location = new System.Drawing.Point(556, 87);
             this.listBoxKraji.Name = "listBoxKraji";
-            this.listBoxKraji.Size = new System.Drawing.Size(202, 277);
+            this.listBoxKraji.Size = new System.Drawing.Size(233, 277);
             this.listBoxKraji.TabIndex = 10;
             this.listBoxKraji.SelectedIndexChanged += new System.EventHandler(this.listBoxKraji_SelectedIndexChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(651, 61);
+            this.label10.Location = new System.Drawing.Point(636, 71);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 13);
             this.label10.TabIndex = 11;
@@ -262,7 +262,7 @@
             // 
             // buttonDatabaseUpdate
             // 
-            this.buttonDatabaseUpdate.Location = new System.Drawing.Point(637, 370);
+            this.buttonDatabaseUpdate.Location = new System.Drawing.Point(616, 370);
             this.buttonDatabaseUpdate.Name = "buttonDatabaseUpdate";
             this.buttonDatabaseUpdate.Size = new System.Drawing.Size(112, 23);
             this.buttonDatabaseUpdate.TabIndex = 12;
@@ -274,7 +274,7 @@
             // 
             this.labelInfo.AutoSize = true;
             this.labelInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelInfo.Location = new System.Drawing.Point(425, 211);
+            this.labelInfo.Location = new System.Drawing.Point(408, 211);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(139, 90);
             this.labelInfo.TabIndex = 13;
@@ -285,7 +285,7 @@
             // labelBackground
             // 
             this.labelBackground.AutoSize = true;
-            this.labelBackground.Location = new System.Drawing.Point(476, 414);
+            this.labelBackground.Location = new System.Drawing.Point(459, 414);
             this.labelBackground.Name = "labelBackground";
             this.labelBackground.Size = new System.Drawing.Size(72, 13);
             this.labelBackground.TabIndex = 25;
@@ -295,7 +295,7 @@
             // labelFont
             // 
             this.labelFont.AutoSize = true;
-            this.labelFont.Location = new System.Drawing.Point(437, 414);
+            this.labelFont.Location = new System.Drawing.Point(420, 414);
             this.labelFont.Name = "labelFont";
             this.labelFont.Size = new System.Drawing.Size(33, 13);
             this.labelFont.TabIndex = 24;

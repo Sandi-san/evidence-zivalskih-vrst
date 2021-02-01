@@ -44,14 +44,14 @@
             this.textBoxBackground.Location = new System.Drawing.Point(103, 117);
             this.textBoxBackground.Name = "textBoxBackground";
             this.textBoxBackground.Size = new System.Drawing.Size(100, 20);
-            this.textBoxBackground.TabIndex = 0;
+            this.textBoxBackground.TabIndex = 1;
             // 
             // textBoxFont
             // 
             this.textBoxFont.Location = new System.Drawing.Point(103, 78);
             this.textBoxFont.Name = "textBoxFont";
             this.textBoxFont.Size = new System.Drawing.Size(100, 20);
-            this.textBoxFont.TabIndex = 1;
+            this.textBoxFont.TabIndex = 0;
             // 
             // label1
             // 

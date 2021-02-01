@@ -43,7 +43,7 @@ namespace evidence_zivalskih_vrst
                             string imeKraj = listKraji.GetString(1);
                             string cifraPosta = listKraji.GetString(2);
                             
-                            listBoxKraji.Items.Add(imeKraj + " - " + cifraPosta);
+                            listBoxKraji.Items.Add(imeKraj + " | " + cifraPosta);
                         }
                         else
                         {
@@ -51,7 +51,7 @@ namespace evidence_zivalskih_vrst
                             string cifraPosta = listKraji.GetString(2);
                             string velikiUporabnik = listKraji.GetString(3);
 
-                            listBoxKraji.Items.Add(imeKraj + " - " + cifraPosta + " - " + velikiUporabnik);
+                            listBoxKraji.Items.Add(imeKraj + " | " + cifraPosta + " | " + velikiUporabnik);
 
                         }
                     }
@@ -227,7 +227,7 @@ namespace evidence_zivalskih_vrst
                     string imeVrsta = listVrste.GetString(1);
                     string nazivRazreda = listVrste.GetString(2);
 
-                    listBoxVrste.Items.Add(imeVrsta + " - " + nazivRazreda);
+                    listBoxVrste.Items.Add(imeVrsta + " | " + nazivRazreda);
                 }
 
                 listVrste.Close();

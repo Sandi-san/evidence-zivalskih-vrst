@@ -162,6 +162,9 @@ namespace evidence_zivalskih_vrst
                 case "pink":
                     this.BackColor = Color.Pink;
                     break;
+                default:
+                    this.BackColor = Color.White;
+                    break;
             }
             switch (labelBackground.Text)
             {
@@ -240,17 +243,30 @@ namespace evidence_zivalskih_vrst
                 case "pink":
                     this.ForeColor = Color.Pink;
                     break;
+                default:
+                    this.ForeColor = Color.Black;
+                    break;
             }
         }
 
         private void listBoxKraji_SelectedIndexChanged(object sender, EventArgs e)
         {
             string splitdata = listBoxKraji.Items[listBoxKraji.SelectedIndex].ToString();
-            string[] space = { " - " };
+            string[] space = { " | " };
             string[] data = splitdata.Split(space, StringSplitOptions.RemoveEmptyEntries);
 
-            textBoxUpdateIme.Text = data[0];
-            textBoxUpdatePosta.Text = data[1];
+            if (data.Length <= 2)
+            {
+                textBoxUpdateIme.Text = data[0];
+                textBoxUpdatePosta.Text = data[1];
+                textBoxUpdateVelUporab.Text = "";
+            }
+            else
+            {
+                textBoxUpdateIme.Text = data[0];
+                textBoxUpdatePosta.Text = data[1];
+                textBoxUpdateVelUporab.Text = data[2];
+            }
         }
     }
 }
